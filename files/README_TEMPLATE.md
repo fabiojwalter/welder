@@ -1,10 +1,11 @@
-WSSnippets for Visual studio code
+Welder for Visual studio code
 ===========================
 
 Visual Studio Code snippet plugin containing some very useful features.
 
 <!-- TOC -->
 
+- [Welder for Visual studio code](#welder-for-visual-studio-code)
 - [1. Features](#1-features)
 - [2. Setup (in 2 easy steps)](#2-setup-in-2-easy-steps)
 - [3. Contribution guidelines](#3-contribution-guidelines)
@@ -18,20 +19,21 @@ Visual Studio Code snippet plugin containing some very useful features.
 # 1. Features
 
 Snippets for:
-- Bricks
-- Mjolnir 
-- Font Awesome
-- Material Icons
-- Material Community Icons
+- SQL Migrations
+- Sequelize Models
+- Express Controllers
+- Express Routers
+- Validators
+- Mocha tests (mocha, supertest, chai, chance)
 
-![Plugin in action](images/wssnippets.gif)
+![Plugin in action](images/welder.gif)
 
 
 # 2. Setup (in 2 easy steps)
 
 1. Install plugin
-  1. Press `F1`, paste `ext install wssnippets` & then press `enter` (or)
-  2. Goto extensions by pressing `Ctrl-Shift-X` (Windows/Linux) or `Cmd-Shift-X` (Mac) & Search for `WSSnippets`, click on install
+  1. Press `F1`, paste `ext install Welder` & then press `enter` (or)
+  2. Goto extensions by pressing `Ctrl-Shift-X` (Windows/Linux) or `Cmd-Shift-X` (Mac) & Search for `Welder`, click on install
 2. Reload your editor
 3. **You are good to go...**
 
@@ -48,7 +50,7 @@ See [here](CHANGELOG.md)
 
 # 5. License
 
-WSSnippets for Visual Studio Code plugin is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+Welder for Visual Studio Code plugin is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
 
 **Enjoy!**
 
