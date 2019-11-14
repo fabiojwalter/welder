@@ -1,0 +1,1 @@
+${1:tableName}_id BIGINT REFERENCES ${tableName}(id) NOT NULL,

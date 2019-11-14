@@ -1,0 +1,3614 @@
+{
+    "MaxxiForge - Welder snippets model default": {
+        "prefix": "welder-model-default",
+        "body": [
+            "export default (sequelize, DataTypes) => {\r",
+            "  const Issue = sequelize.define(\r",
+            "    'Issue',\r",
+            "    {\r",
+            "      content: {\r",
+            "        type: DataTypes.STRING(800),\r",
+            "        allowNull: false,\r",
+            "        validate: {\r",
+            "          notEmpty: {\r",
+            "            msg: 'Content não pode ser nulo'\r",
+            "          }\r",
+            "        }\r",
+            "      },\r",
+            "      issueStatus: {\r",
+            "        type: DataTypes.STRING(60),\r",
+            "        allowNull: false,\r",
+            "        validate: {\r",
+            "          notEmpty: {\r",
+            "            msg: 'IsssueStatus não pode ser nulo'\r",
+            "          },\r",
+            "          isIn: {\r",
+            "            args: [['OPEN', 'IN PROGRESS', 'WAITING', 'DONE']],\r",
+            "            msg: 'Opção invalida! Validos = OPEN, IN PROGRESS, WAITING, DONE'\r",
+            "          }\r",
+            "        }\r",
+            "      },\r",
+            "      closedAt: {\r",
+            "        type: DataTypes.DATE,\r",
+            "        allowNull: false,\r",
+            "        validate: {\r",
+            "          notNull: {\r",
+            "            msg: 'A data de fechamento não pode ser nula'\r",
+            "          }\r",
+            "        }\r",
+            "      },\r",
+            "      active: {\r",
+            "        type: DataTypes.BOOLEAN,\r",
+            "        allowNull: false,\r",
+            "        defaultValue: true\r",
+            "      }\r",
+            "    },\r",
+            "    {\r",
+            "      tableName: 'issues',\r",
+            "      underscored: true,\r",
+            "      schema: process.env.DATABASE_SCHEMA || 'public'\r",
+            "    }\r",
+            "  );\r",
+            "\r",
+            "  Issue.associate = (models) => {\r",
+            "    Issue.belongsTo(models.Project);\r",
+            "  };\r",
+            "\r",
+            "  return Issue;\r",
+            "};\r",
+            ""
+        ],
+        "description": "MaxxiForge - Welder snippets model default",
+        "scope": ""
+    },
+    "MaxxiForge - Welder snippets sql create_search_index": {
+        "prefix": "welder-sql-create_search_index",
+        "body": [
+            "CREATE INDEX idx_${table}_${column} ON ${table} ",
+            "    USING btree (${column} ASC NULLS LAST) TABLESPACE pg_default;"
+        ],
+        "description": "MaxxiForge - Welder snippets sql create_search_index",
+        "scope": ""
+    },
+    "MaxxiForge - Welder snippets sql create_table": {
+        "prefix": "welder-sql-create_table",
+        "body": [
+            "CREATE TABLE ${1:tableName} (",
+            "    id BIGSERIAL PRIMARY KEY,",
+            "    ${2:varcharField} CHARACTER VARYING(60) NOT NULL,",
+            "    active BOOLEAN DEFAULT true NOT NULL,",
+            "    created_at TIMESTAMPTZ NOT NULL,",
+            "    updated_at TIMESTAMPTZ NOT NULL DEFAULT now()",
+            ");"
+        ],
+        "description": "MaxxiForge - Welder snippets sql create_table",
+        "scope": ""
+    },
+    "MaxxiForge - Welder snippets sql create_unique_index": {
+        "prefix": "welder-sql-create_unique_index",
+        "body": [
+            "CREATE UNIQUE INDEX idx_${table}_${column} ON ${table} ",
+            "    USING btree (${column} ASC NULLS LAST) TABLESPACE pg_default;"
+        ],
+        "description": "MaxxiForge - Welder snippets sql create_unique_index",
+        "scope": ""
+    },
+    "MaxxiForge - Welder snippets sql fk": {
+        "prefix": "welder-sql-fk",
+        "body": [
+            "${1:tableName}_id BIGINT REFERENCES ${tableName}(id) NOT NULL,"
+        ],
+        "description": "MaxxiForge - Welder snippets sql fk",
+        "scope": ""
+    },
+    "Font Awesome fa-500px\r": {
+        "prefix": "fa-fa-500px\r",
+        "body": "fa-500px\r",
+        "description": "Font Awesome fa-500px\r",
+        "scope": ""
+    },
+    "Font Awesome fa-adjust\r": {
+        "prefix": "fa-fa-adjust\r",
+        "body": "fa-adjust\r",
+        "description": "Font Awesome fa-adjust\r",
+        "scope": ""
+    },
+    "Font Awesome fa-adn\r": {
+        "prefix": "fa-fa-adn\r",
+        "body": "fa-adn\r",
+        "description": "Font Awesome fa-adn\r",
+        "scope": ""
+    },
+    "Font Awesome fa-align-center\r": {
+        "prefix": "fa-fa-align-center\r",
+        "body": "fa-align-center\r",
+        "description": "Font Awesome fa-align-center\r",
+        "scope": ""
+    },
+    "Font Awesome fa-align-justify\r": {
+        "prefix": "fa-fa-align-justify\r",
+        "body": "fa-align-justify\r",
+        "description": "Font Awesome fa-align-justify\r",
+        "scope": ""
+    },
+    "Font Awesome fa-align-left\r": {
+        "prefix": "fa-fa-align-left\r",
+        "body": "fa-align-left\r",
+        "description": "Font Awesome fa-align-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-align-right\r": {
+        "prefix": "fa-fa-align-right\r",
+        "body": "fa-align-right\r",
+        "description": "Font Awesome fa-align-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-amazon\r": {
+        "prefix": "fa-fa-amazon\r",
+        "body": "fa-amazon\r",
+        "description": "Font Awesome fa-amazon\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ambulance\r": {
+        "prefix": "fa-fa-ambulance\r",
+        "body": "fa-ambulance\r",
+        "description": "Font Awesome fa-ambulance\r",
+        "scope": ""
+    },
+    "Font Awesome fa-anchor\r": {
+        "prefix": "fa-fa-anchor\r",
+        "body": "fa-anchor\r",
+        "description": "Font Awesome fa-anchor\r",
+        "scope": ""
+    },
+    "Font Awesome fa-android\r": {
+        "prefix": "fa-fa-android\r",
+        "body": "fa-android\r",
+        "description": "Font Awesome fa-android\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angellist\r": {
+        "prefix": "fa-fa-angellist\r",
+        "body": "fa-angellist\r",
+        "description": "Font Awesome fa-angellist\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-double-down\r": {
+        "prefix": "fa-fa-angle-double-down\r",
+        "body": "fa-angle-double-down\r",
+        "description": "Font Awesome fa-angle-double-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-double-left\r": {
+        "prefix": "fa-fa-angle-double-left\r",
+        "body": "fa-angle-double-left\r",
+        "description": "Font Awesome fa-angle-double-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-double-right\r": {
+        "prefix": "fa-fa-angle-double-right\r",
+        "body": "fa-angle-double-right\r",
+        "description": "Font Awesome fa-angle-double-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-double-up\r": {
+        "prefix": "fa-fa-angle-double-up\r",
+        "body": "fa-angle-double-up\r",
+        "description": "Font Awesome fa-angle-double-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-down\r": {
+        "prefix": "fa-fa-angle-down\r",
+        "body": "fa-angle-down\r",
+        "description": "Font Awesome fa-angle-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-left\r": {
+        "prefix": "fa-fa-angle-left\r",
+        "body": "fa-angle-left\r",
+        "description": "Font Awesome fa-angle-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-right\r": {
+        "prefix": "fa-fa-angle-right\r",
+        "body": "fa-angle-right\r",
+        "description": "Font Awesome fa-angle-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-angle-up\r": {
+        "prefix": "fa-fa-angle-up\r",
+        "body": "fa-angle-up\r",
+        "description": "Font Awesome fa-angle-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-apple\r": {
+        "prefix": "fa-fa-apple\r",
+        "body": "fa-apple\r",
+        "description": "Font Awesome fa-apple\r",
+        "scope": ""
+    },
+    "Font Awesome fa-archive\r": {
+        "prefix": "fa-fa-archive\r",
+        "body": "fa-archive\r",
+        "description": "Font Awesome fa-archive\r",
+        "scope": ""
+    },
+    "Font Awesome fa-area-chart\r": {
+        "prefix": "fa-fa-area-chart\r",
+        "body": "fa-area-chart\r",
+        "description": "Font Awesome fa-area-chart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-down\r": {
+        "prefix": "fa-fa-arrow-circle-down\r",
+        "body": "fa-arrow-circle-down\r",
+        "description": "Font Awesome fa-arrow-circle-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-left\r": {
+        "prefix": "fa-fa-arrow-circle-left\r",
+        "body": "fa-arrow-circle-left\r",
+        "description": "Font Awesome fa-arrow-circle-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-o-down\r": {
+        "prefix": "fa-fa-arrow-circle-o-down\r",
+        "body": "fa-arrow-circle-o-down\r",
+        "description": "Font Awesome fa-arrow-circle-o-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-o-left\r": {
+        "prefix": "fa-fa-arrow-circle-o-left\r",
+        "body": "fa-arrow-circle-o-left\r",
+        "description": "Font Awesome fa-arrow-circle-o-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-o-right\r": {
+        "prefix": "fa-fa-arrow-circle-o-right\r",
+        "body": "fa-arrow-circle-o-right\r",
+        "description": "Font Awesome fa-arrow-circle-o-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-o-up\r": {
+        "prefix": "fa-fa-arrow-circle-o-up\r",
+        "body": "fa-arrow-circle-o-up\r",
+        "description": "Font Awesome fa-arrow-circle-o-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-right\r": {
+        "prefix": "fa-fa-arrow-circle-right\r",
+        "body": "fa-arrow-circle-right\r",
+        "description": "Font Awesome fa-arrow-circle-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-circle-up\r": {
+        "prefix": "fa-fa-arrow-circle-up\r",
+        "body": "fa-arrow-circle-up\r",
+        "description": "Font Awesome fa-arrow-circle-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-down\r": {
+        "prefix": "fa-fa-arrow-down\r",
+        "body": "fa-arrow-down\r",
+        "description": "Font Awesome fa-arrow-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-left\r": {
+        "prefix": "fa-fa-arrow-left\r",
+        "body": "fa-arrow-left\r",
+        "description": "Font Awesome fa-arrow-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-right\r": {
+        "prefix": "fa-fa-arrow-right\r",
+        "body": "fa-arrow-right\r",
+        "description": "Font Awesome fa-arrow-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrow-up\r": {
+        "prefix": "fa-fa-arrow-up\r",
+        "body": "fa-arrow-up\r",
+        "description": "Font Awesome fa-arrow-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrows\r": {
+        "prefix": "fa-fa-arrows\r",
+        "body": "fa-arrows\r",
+        "description": "Font Awesome fa-arrows\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrows-alt\r": {
+        "prefix": "fa-fa-arrows-alt\r",
+        "body": "fa-arrows-alt\r",
+        "description": "Font Awesome fa-arrows-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrows-h\r": {
+        "prefix": "fa-fa-arrows-h\r",
+        "body": "fa-arrows-h\r",
+        "description": "Font Awesome fa-arrows-h\r",
+        "scope": ""
+    },
+    "Font Awesome fa-arrows-v\r": {
+        "prefix": "fa-fa-arrows-v\r",
+        "body": "fa-arrows-v\r",
+        "description": "Font Awesome fa-arrows-v\r",
+        "scope": ""
+    },
+    "Font Awesome fa-asterisk\r": {
+        "prefix": "fa-fa-asterisk\r",
+        "body": "fa-asterisk\r",
+        "description": "Font Awesome fa-asterisk\r",
+        "scope": ""
+    },
+    "Font Awesome fa-at\r": {
+        "prefix": "fa-fa-at\r",
+        "body": "fa-at\r",
+        "description": "Font Awesome fa-at\r",
+        "scope": ""
+    },
+    "Font Awesome fa-backward\r": {
+        "prefix": "fa-fa-backward\r",
+        "body": "fa-backward\r",
+        "description": "Font Awesome fa-backward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-balance-scale\r": {
+        "prefix": "fa-fa-balance-scale\r",
+        "body": "fa-balance-scale\r",
+        "description": "Font Awesome fa-balance-scale\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ban\r": {
+        "prefix": "fa-fa-ban\r",
+        "body": "fa-ban\r",
+        "description": "Font Awesome fa-ban\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bar-chart\r": {
+        "prefix": "fa-fa-bar-chart\r",
+        "body": "fa-bar-chart\r",
+        "description": "Font Awesome fa-bar-chart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-barcode\r": {
+        "prefix": "fa-fa-barcode\r",
+        "body": "fa-barcode\r",
+        "description": "Font Awesome fa-barcode\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bars\r": {
+        "prefix": "fa-fa-bars\r",
+        "body": "fa-bars\r",
+        "description": "Font Awesome fa-bars\r",
+        "scope": ""
+    },
+    "Font Awesome fa-battery-empty\r": {
+        "prefix": "fa-fa-battery-empty\r",
+        "body": "fa-battery-empty\r",
+        "description": "Font Awesome fa-battery-empty\r",
+        "scope": ""
+    },
+    "Font Awesome fa-battery-full\r": {
+        "prefix": "fa-fa-battery-full\r",
+        "body": "fa-battery-full\r",
+        "description": "Font Awesome fa-battery-full\r",
+        "scope": ""
+    },
+    "Font Awesome fa-battery-half\r": {
+        "prefix": "fa-fa-battery-half\r",
+        "body": "fa-battery-half\r",
+        "description": "Font Awesome fa-battery-half\r",
+        "scope": ""
+    },
+    "Font Awesome fa-battery-quarter\r": {
+        "prefix": "fa-fa-battery-quarter\r",
+        "body": "fa-battery-quarter\r",
+        "description": "Font Awesome fa-battery-quarter\r",
+        "scope": ""
+    },
+    "Font Awesome fa-battery-three-quarters\r": {
+        "prefix": "fa-fa-battery-three-quarters\r",
+        "body": "fa-battery-three-quarters\r",
+        "description": "Font Awesome fa-battery-three-quarters\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bed\r": {
+        "prefix": "fa-fa-bed\r",
+        "body": "fa-bed\r",
+        "description": "Font Awesome fa-bed\r",
+        "scope": ""
+    },
+    "Font Awesome fa-beer\r": {
+        "prefix": "fa-fa-beer\r",
+        "body": "fa-beer\r",
+        "description": "Font Awesome fa-beer\r",
+        "scope": ""
+    },
+    "Font Awesome fa-behance\r": {
+        "prefix": "fa-fa-behance\r",
+        "body": "fa-behance\r",
+        "description": "Font Awesome fa-behance\r",
+        "scope": ""
+    },
+    "Font Awesome fa-behance-square\r": {
+        "prefix": "fa-fa-behance-square\r",
+        "body": "fa-behance-square\r",
+        "description": "Font Awesome fa-behance-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bell\r": {
+        "prefix": "fa-fa-bell\r",
+        "body": "fa-bell\r",
+        "description": "Font Awesome fa-bell\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bell-o\r": {
+        "prefix": "fa-fa-bell-o\r",
+        "body": "fa-bell-o\r",
+        "description": "Font Awesome fa-bell-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bell-slash\r": {
+        "prefix": "fa-fa-bell-slash\r",
+        "body": "fa-bell-slash\r",
+        "description": "Font Awesome fa-bell-slash\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bell-slash-o\r": {
+        "prefix": "fa-fa-bell-slash-o\r",
+        "body": "fa-bell-slash-o\r",
+        "description": "Font Awesome fa-bell-slash-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bicycle\r": {
+        "prefix": "fa-fa-bicycle\r",
+        "body": "fa-bicycle\r",
+        "description": "Font Awesome fa-bicycle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-binoculars\r": {
+        "prefix": "fa-fa-binoculars\r",
+        "body": "fa-binoculars\r",
+        "description": "Font Awesome fa-binoculars\r",
+        "scope": ""
+    },
+    "Font Awesome fa-birthday-cake\r": {
+        "prefix": "fa-fa-birthday-cake\r",
+        "body": "fa-birthday-cake\r",
+        "description": "Font Awesome fa-birthday-cake\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bitbucket\r": {
+        "prefix": "fa-fa-bitbucket\r",
+        "body": "fa-bitbucket\r",
+        "description": "Font Awesome fa-bitbucket\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bitbucket-square\r": {
+        "prefix": "fa-fa-bitbucket-square\r",
+        "body": "fa-bitbucket-square\r",
+        "description": "Font Awesome fa-bitbucket-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-black-tie\r": {
+        "prefix": "fa-fa-black-tie\r",
+        "body": "fa-black-tie\r",
+        "description": "Font Awesome fa-black-tie\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bold\r": {
+        "prefix": "fa-fa-bold\r",
+        "body": "fa-bold\r",
+        "description": "Font Awesome fa-bold\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bolt\r": {
+        "prefix": "fa-fa-bolt\r",
+        "body": "fa-bolt\r",
+        "description": "Font Awesome fa-bolt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bomb\r": {
+        "prefix": "fa-fa-bomb\r",
+        "body": "fa-bomb\r",
+        "description": "Font Awesome fa-bomb\r",
+        "scope": ""
+    },
+    "Font Awesome fa-book\r": {
+        "prefix": "fa-fa-book\r",
+        "body": "fa-book\r",
+        "description": "Font Awesome fa-book\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bookmark\r": {
+        "prefix": "fa-fa-bookmark\r",
+        "body": "fa-bookmark\r",
+        "description": "Font Awesome fa-bookmark\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bookmark-o\r": {
+        "prefix": "fa-fa-bookmark-o\r",
+        "body": "fa-bookmark-o\r",
+        "description": "Font Awesome fa-bookmark-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-briefcase\r": {
+        "prefix": "fa-fa-briefcase\r",
+        "body": "fa-briefcase\r",
+        "description": "Font Awesome fa-briefcase\r",
+        "scope": ""
+    },
+    "Font Awesome fa-btc\r": {
+        "prefix": "fa-fa-btc\r",
+        "body": "fa-btc\r",
+        "description": "Font Awesome fa-btc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bug\r": {
+        "prefix": "fa-fa-bug\r",
+        "body": "fa-bug\r",
+        "description": "Font Awesome fa-bug\r",
+        "scope": ""
+    },
+    "Font Awesome fa-building\r": {
+        "prefix": "fa-fa-building\r",
+        "body": "fa-building\r",
+        "description": "Font Awesome fa-building\r",
+        "scope": ""
+    },
+    "Font Awesome fa-building-o\r": {
+        "prefix": "fa-fa-building-o\r",
+        "body": "fa-building-o\r",
+        "description": "Font Awesome fa-building-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bullhorn\r": {
+        "prefix": "fa-fa-bullhorn\r",
+        "body": "fa-bullhorn\r",
+        "description": "Font Awesome fa-bullhorn\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bullseye\r": {
+        "prefix": "fa-fa-bullseye\r",
+        "body": "fa-bullseye\r",
+        "description": "Font Awesome fa-bullseye\r",
+        "scope": ""
+    },
+    "Font Awesome fa-bus\r": {
+        "prefix": "fa-fa-bus\r",
+        "body": "fa-bus\r",
+        "description": "Font Awesome fa-bus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-buysellads\r": {
+        "prefix": "fa-fa-buysellads\r",
+        "body": "fa-buysellads\r",
+        "description": "Font Awesome fa-buysellads\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calculator\r": {
+        "prefix": "fa-fa-calculator\r",
+        "body": "fa-calculator\r",
+        "description": "Font Awesome fa-calculator\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar\r": {
+        "prefix": "fa-fa-calendar\r",
+        "body": "fa-calendar\r",
+        "description": "Font Awesome fa-calendar\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar-check-o\r": {
+        "prefix": "fa-fa-calendar-check-o\r",
+        "body": "fa-calendar-check-o\r",
+        "description": "Font Awesome fa-calendar-check-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar-minus-o\r": {
+        "prefix": "fa-fa-calendar-minus-o\r",
+        "body": "fa-calendar-minus-o\r",
+        "description": "Font Awesome fa-calendar-minus-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar-o\r": {
+        "prefix": "fa-fa-calendar-o\r",
+        "body": "fa-calendar-o\r",
+        "description": "Font Awesome fa-calendar-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar-plus-o\r": {
+        "prefix": "fa-fa-calendar-plus-o\r",
+        "body": "fa-calendar-plus-o\r",
+        "description": "Font Awesome fa-calendar-plus-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-calendar-times-o\r": {
+        "prefix": "fa-fa-calendar-times-o\r",
+        "body": "fa-calendar-times-o\r",
+        "description": "Font Awesome fa-calendar-times-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-camera\r": {
+        "prefix": "fa-fa-camera\r",
+        "body": "fa-camera\r",
+        "description": "Font Awesome fa-camera\r",
+        "scope": ""
+    },
+    "Font Awesome fa-camera-retro\r": {
+        "prefix": "fa-fa-camera-retro\r",
+        "body": "fa-camera-retro\r",
+        "description": "Font Awesome fa-camera-retro\r",
+        "scope": ""
+    },
+    "Font Awesome fa-car\r": {
+        "prefix": "fa-fa-car\r",
+        "body": "fa-car\r",
+        "description": "Font Awesome fa-car\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-down\r": {
+        "prefix": "fa-fa-caret-down\r",
+        "body": "fa-caret-down\r",
+        "description": "Font Awesome fa-caret-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-left\r": {
+        "prefix": "fa-fa-caret-left\r",
+        "body": "fa-caret-left\r",
+        "description": "Font Awesome fa-caret-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-right\r": {
+        "prefix": "fa-fa-caret-right\r",
+        "body": "fa-caret-right\r",
+        "description": "Font Awesome fa-caret-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-square-o-down\r": {
+        "prefix": "fa-fa-caret-square-o-down\r",
+        "body": "fa-caret-square-o-down\r",
+        "description": "Font Awesome fa-caret-square-o-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-square-o-left\r": {
+        "prefix": "fa-fa-caret-square-o-left\r",
+        "body": "fa-caret-square-o-left\r",
+        "description": "Font Awesome fa-caret-square-o-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-square-o-right\r": {
+        "prefix": "fa-fa-caret-square-o-right\r",
+        "body": "fa-caret-square-o-right\r",
+        "description": "Font Awesome fa-caret-square-o-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-square-o-up\r": {
+        "prefix": "fa-fa-caret-square-o-up\r",
+        "body": "fa-caret-square-o-up\r",
+        "description": "Font Awesome fa-caret-square-o-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-caret-up\r": {
+        "prefix": "fa-fa-caret-up\r",
+        "body": "fa-caret-up\r",
+        "description": "Font Awesome fa-caret-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cart-arrow-down\r": {
+        "prefix": "fa-fa-cart-arrow-down\r",
+        "body": "fa-cart-arrow-down\r",
+        "description": "Font Awesome fa-cart-arrow-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cart-plus\r": {
+        "prefix": "fa-fa-cart-plus\r",
+        "body": "fa-cart-plus\r",
+        "description": "Font Awesome fa-cart-plus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc\r": {
+        "prefix": "fa-fa-cc\r",
+        "body": "fa-cc\r",
+        "description": "Font Awesome fa-cc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-amex\r": {
+        "prefix": "fa-fa-cc-amex\r",
+        "body": "fa-cc-amex\r",
+        "description": "Font Awesome fa-cc-amex\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-diners-club\r": {
+        "prefix": "fa-fa-cc-diners-club\r",
+        "body": "fa-cc-diners-club\r",
+        "description": "Font Awesome fa-cc-diners-club\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-discover\r": {
+        "prefix": "fa-fa-cc-discover\r",
+        "body": "fa-cc-discover\r",
+        "description": "Font Awesome fa-cc-discover\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-jcb\r": {
+        "prefix": "fa-fa-cc-jcb\r",
+        "body": "fa-cc-jcb\r",
+        "description": "Font Awesome fa-cc-jcb\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-mastercard\r": {
+        "prefix": "fa-fa-cc-mastercard\r",
+        "body": "fa-cc-mastercard\r",
+        "description": "Font Awesome fa-cc-mastercard\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-paypal\r": {
+        "prefix": "fa-fa-cc-paypal\r",
+        "body": "fa-cc-paypal\r",
+        "description": "Font Awesome fa-cc-paypal\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-stripe\r": {
+        "prefix": "fa-fa-cc-stripe\r",
+        "body": "fa-cc-stripe\r",
+        "description": "Font Awesome fa-cc-stripe\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cc-visa\r": {
+        "prefix": "fa-fa-cc-visa\r",
+        "body": "fa-cc-visa\r",
+        "description": "Font Awesome fa-cc-visa\r",
+        "scope": ""
+    },
+    "Font Awesome fa-certificate\r": {
+        "prefix": "fa-fa-certificate\r",
+        "body": "fa-certificate\r",
+        "description": "Font Awesome fa-certificate\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chain-broken\r": {
+        "prefix": "fa-fa-chain-broken\r",
+        "body": "fa-chain-broken\r",
+        "description": "Font Awesome fa-chain-broken\r",
+        "scope": ""
+    },
+    "Font Awesome fa-check\r": {
+        "prefix": "fa-fa-check\r",
+        "body": "fa-check\r",
+        "description": "Font Awesome fa-check\r",
+        "scope": ""
+    },
+    "Font Awesome fa-check-circle\r": {
+        "prefix": "fa-fa-check-circle\r",
+        "body": "fa-check-circle\r",
+        "description": "Font Awesome fa-check-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-check-circle-o\r": {
+        "prefix": "fa-fa-check-circle-o\r",
+        "body": "fa-check-circle-o\r",
+        "description": "Font Awesome fa-check-circle-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-check-square\r": {
+        "prefix": "fa-fa-check-square\r",
+        "body": "fa-check-square\r",
+        "description": "Font Awesome fa-check-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-check-square-o\r": {
+        "prefix": "fa-fa-check-square-o\r",
+        "body": "fa-check-square-o\r",
+        "description": "Font Awesome fa-check-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-circle-down\r": {
+        "prefix": "fa-fa-chevron-circle-down\r",
+        "body": "fa-chevron-circle-down\r",
+        "description": "Font Awesome fa-chevron-circle-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-circle-left\r": {
+        "prefix": "fa-fa-chevron-circle-left\r",
+        "body": "fa-chevron-circle-left\r",
+        "description": "Font Awesome fa-chevron-circle-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-circle-right\r": {
+        "prefix": "fa-fa-chevron-circle-right\r",
+        "body": "fa-chevron-circle-right\r",
+        "description": "Font Awesome fa-chevron-circle-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-circle-up\r": {
+        "prefix": "fa-fa-chevron-circle-up\r",
+        "body": "fa-chevron-circle-up\r",
+        "description": "Font Awesome fa-chevron-circle-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-down\r": {
+        "prefix": "fa-fa-chevron-down\r",
+        "body": "fa-chevron-down\r",
+        "description": "Font Awesome fa-chevron-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-left\r": {
+        "prefix": "fa-fa-chevron-left\r",
+        "body": "fa-chevron-left\r",
+        "description": "Font Awesome fa-chevron-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-right\r": {
+        "prefix": "fa-fa-chevron-right\r",
+        "body": "fa-chevron-right\r",
+        "description": "Font Awesome fa-chevron-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chevron-up\r": {
+        "prefix": "fa-fa-chevron-up\r",
+        "body": "fa-chevron-up\r",
+        "description": "Font Awesome fa-chevron-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-child\r": {
+        "prefix": "fa-fa-child\r",
+        "body": "fa-child\r",
+        "description": "Font Awesome fa-child\r",
+        "scope": ""
+    },
+    "Font Awesome fa-chrome\r": {
+        "prefix": "fa-fa-chrome\r",
+        "body": "fa-chrome\r",
+        "description": "Font Awesome fa-chrome\r",
+        "scope": ""
+    },
+    "Font Awesome fa-circle\r": {
+        "prefix": "fa-fa-circle\r",
+        "body": "fa-circle\r",
+        "description": "Font Awesome fa-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-circle-o\r": {
+        "prefix": "fa-fa-circle-o\r",
+        "body": "fa-circle-o\r",
+        "description": "Font Awesome fa-circle-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-circle-o-notch\r": {
+        "prefix": "fa-fa-circle-o-notch\r",
+        "body": "fa-circle-o-notch\r",
+        "description": "Font Awesome fa-circle-o-notch\r",
+        "scope": ""
+    },
+    "Font Awesome fa-circle-thin\r": {
+        "prefix": "fa-fa-circle-thin\r",
+        "body": "fa-circle-thin\r",
+        "description": "Font Awesome fa-circle-thin\r",
+        "scope": ""
+    },
+    "Font Awesome fa-clipboard\r": {
+        "prefix": "fa-fa-clipboard\r",
+        "body": "fa-clipboard\r",
+        "description": "Font Awesome fa-clipboard\r",
+        "scope": ""
+    },
+    "Font Awesome fa-clock-o\r": {
+        "prefix": "fa-fa-clock-o\r",
+        "body": "fa-clock-o\r",
+        "description": "Font Awesome fa-clock-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-clone\r": {
+        "prefix": "fa-fa-clone\r",
+        "body": "fa-clone\r",
+        "description": "Font Awesome fa-clone\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cloud\r": {
+        "prefix": "fa-fa-cloud\r",
+        "body": "fa-cloud\r",
+        "description": "Font Awesome fa-cloud\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cloud-download\r": {
+        "prefix": "fa-fa-cloud-download\r",
+        "body": "fa-cloud-download\r",
+        "description": "Font Awesome fa-cloud-download\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cloud-upload\r": {
+        "prefix": "fa-fa-cloud-upload\r",
+        "body": "fa-cloud-upload\r",
+        "description": "Font Awesome fa-cloud-upload\r",
+        "scope": ""
+    },
+    "Font Awesome fa-code\r": {
+        "prefix": "fa-fa-code\r",
+        "body": "fa-code\r",
+        "description": "Font Awesome fa-code\r",
+        "scope": ""
+    },
+    "Font Awesome fa-code-fork\r": {
+        "prefix": "fa-fa-code-fork\r",
+        "body": "fa-code-fork\r",
+        "description": "Font Awesome fa-code-fork\r",
+        "scope": ""
+    },
+    "Font Awesome fa-codepen\r": {
+        "prefix": "fa-fa-codepen\r",
+        "body": "fa-codepen\r",
+        "description": "Font Awesome fa-codepen\r",
+        "scope": ""
+    },
+    "Font Awesome fa-coffee\r": {
+        "prefix": "fa-fa-coffee\r",
+        "body": "fa-coffee\r",
+        "description": "Font Awesome fa-coffee\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cog\r": {
+        "prefix": "fa-fa-cog\r",
+        "body": "fa-cog\r",
+        "description": "Font Awesome fa-cog\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cogs\r": {
+        "prefix": "fa-fa-cogs\r",
+        "body": "fa-cogs\r",
+        "description": "Font Awesome fa-cogs\r",
+        "scope": ""
+    },
+    "Font Awesome fa-columns\r": {
+        "prefix": "fa-fa-columns\r",
+        "body": "fa-columns\r",
+        "description": "Font Awesome fa-columns\r",
+        "scope": ""
+    },
+    "Font Awesome fa-comment\r": {
+        "prefix": "fa-fa-comment\r",
+        "body": "fa-comment\r",
+        "description": "Font Awesome fa-comment\r",
+        "scope": ""
+    },
+    "Font Awesome fa-comment-o\r": {
+        "prefix": "fa-fa-comment-o\r",
+        "body": "fa-comment-o\r",
+        "description": "Font Awesome fa-comment-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-commenting\r": {
+        "prefix": "fa-fa-commenting\r",
+        "body": "fa-commenting\r",
+        "description": "Font Awesome fa-commenting\r",
+        "scope": ""
+    },
+    "Font Awesome fa-commenting-o\r": {
+        "prefix": "fa-fa-commenting-o\r",
+        "body": "fa-commenting-o\r",
+        "description": "Font Awesome fa-commenting-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-comments\r": {
+        "prefix": "fa-fa-comments\r",
+        "body": "fa-comments\r",
+        "description": "Font Awesome fa-comments\r",
+        "scope": ""
+    },
+    "Font Awesome fa-comments-o\r": {
+        "prefix": "fa-fa-comments-o\r",
+        "body": "fa-comments-o\r",
+        "description": "Font Awesome fa-comments-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-compass\r": {
+        "prefix": "fa-fa-compass\r",
+        "body": "fa-compass\r",
+        "description": "Font Awesome fa-compass\r",
+        "scope": ""
+    },
+    "Font Awesome fa-compress\r": {
+        "prefix": "fa-fa-compress\r",
+        "body": "fa-compress\r",
+        "description": "Font Awesome fa-compress\r",
+        "scope": ""
+    },
+    "Font Awesome fa-connectdevelop\r": {
+        "prefix": "fa-fa-connectdevelop\r",
+        "body": "fa-connectdevelop\r",
+        "description": "Font Awesome fa-connectdevelop\r",
+        "scope": ""
+    },
+    "Font Awesome fa-contao\r": {
+        "prefix": "fa-fa-contao\r",
+        "body": "fa-contao\r",
+        "description": "Font Awesome fa-contao\r",
+        "scope": ""
+    },
+    "Font Awesome fa-copyright\r": {
+        "prefix": "fa-fa-copyright\r",
+        "body": "fa-copyright\r",
+        "description": "Font Awesome fa-copyright\r",
+        "scope": ""
+    },
+    "Font Awesome fa-creative-commons\r": {
+        "prefix": "fa-fa-creative-commons\r",
+        "body": "fa-creative-commons\r",
+        "description": "Font Awesome fa-creative-commons\r",
+        "scope": ""
+    },
+    "Font Awesome fa-credit-card\r": {
+        "prefix": "fa-fa-credit-card\r",
+        "body": "fa-credit-card\r",
+        "description": "Font Awesome fa-credit-card\r",
+        "scope": ""
+    },
+    "Font Awesome fa-crop\r": {
+        "prefix": "fa-fa-crop\r",
+        "body": "fa-crop\r",
+        "description": "Font Awesome fa-crop\r",
+        "scope": ""
+    },
+    "Font Awesome fa-crosshairs\r": {
+        "prefix": "fa-fa-crosshairs\r",
+        "body": "fa-crosshairs\r",
+        "description": "Font Awesome fa-crosshairs\r",
+        "scope": ""
+    },
+    "Font Awesome fa-css3\r": {
+        "prefix": "fa-fa-css3\r",
+        "body": "fa-css3\r",
+        "description": "Font Awesome fa-css3\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cube\r": {
+        "prefix": "fa-fa-cube\r",
+        "body": "fa-cube\r",
+        "description": "Font Awesome fa-cube\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cubes\r": {
+        "prefix": "fa-fa-cubes\r",
+        "body": "fa-cubes\r",
+        "description": "Font Awesome fa-cubes\r",
+        "scope": ""
+    },
+    "Font Awesome fa-cutlery\r": {
+        "prefix": "fa-fa-cutlery\r",
+        "body": "fa-cutlery\r",
+        "description": "Font Awesome fa-cutlery\r",
+        "scope": ""
+    },
+    "Font Awesome fa-dashcube\r": {
+        "prefix": "fa-fa-dashcube\r",
+        "body": "fa-dashcube\r",
+        "description": "Font Awesome fa-dashcube\r",
+        "scope": ""
+    },
+    "Font Awesome fa-database\r": {
+        "prefix": "fa-fa-database\r",
+        "body": "fa-database\r",
+        "description": "Font Awesome fa-database\r",
+        "scope": ""
+    },
+    "Font Awesome fa-delicious\r": {
+        "prefix": "fa-fa-delicious\r",
+        "body": "fa-delicious\r",
+        "description": "Font Awesome fa-delicious\r",
+        "scope": ""
+    },
+    "Font Awesome fa-desktop\r": {
+        "prefix": "fa-fa-desktop\r",
+        "body": "fa-desktop\r",
+        "description": "Font Awesome fa-desktop\r",
+        "scope": ""
+    },
+    "Font Awesome fa-deviantart\r": {
+        "prefix": "fa-fa-deviantart\r",
+        "body": "fa-deviantart\r",
+        "description": "Font Awesome fa-deviantart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-diamond\r": {
+        "prefix": "fa-fa-diamond\r",
+        "body": "fa-diamond\r",
+        "description": "Font Awesome fa-diamond\r",
+        "scope": ""
+    },
+    "Font Awesome fa-digg\r": {
+        "prefix": "fa-fa-digg\r",
+        "body": "fa-digg\r",
+        "description": "Font Awesome fa-digg\r",
+        "scope": ""
+    },
+    "Font Awesome fa-dot-circle-o\r": {
+        "prefix": "fa-fa-dot-circle-o\r",
+        "body": "fa-dot-circle-o\r",
+        "description": "Font Awesome fa-dot-circle-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-download\r": {
+        "prefix": "fa-fa-download\r",
+        "body": "fa-download\r",
+        "description": "Font Awesome fa-download\r",
+        "scope": ""
+    },
+    "Font Awesome fa-dribbble\r": {
+        "prefix": "fa-fa-dribbble\r",
+        "body": "fa-dribbble\r",
+        "description": "Font Awesome fa-dribbble\r",
+        "scope": ""
+    },
+    "Font Awesome fa-dropbox\r": {
+        "prefix": "fa-fa-dropbox\r",
+        "body": "fa-dropbox\r",
+        "description": "Font Awesome fa-dropbox\r",
+        "scope": ""
+    },
+    "Font Awesome fa-drupal\r": {
+        "prefix": "fa-fa-drupal\r",
+        "body": "fa-drupal\r",
+        "description": "Font Awesome fa-drupal\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eject\r": {
+        "prefix": "fa-fa-eject\r",
+        "body": "fa-eject\r",
+        "description": "Font Awesome fa-eject\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ellipsis-h\r": {
+        "prefix": "fa-fa-ellipsis-h\r",
+        "body": "fa-ellipsis-h\r",
+        "description": "Font Awesome fa-ellipsis-h\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ellipsis-v\r": {
+        "prefix": "fa-fa-ellipsis-v\r",
+        "body": "fa-ellipsis-v\r",
+        "description": "Font Awesome fa-ellipsis-v\r",
+        "scope": ""
+    },
+    "Font Awesome fa-empire\r": {
+        "prefix": "fa-fa-empire\r",
+        "body": "fa-empire\r",
+        "description": "Font Awesome fa-empire\r",
+        "scope": ""
+    },
+    "Font Awesome fa-envelope\r": {
+        "prefix": "fa-fa-envelope\r",
+        "body": "fa-envelope\r",
+        "description": "Font Awesome fa-envelope\r",
+        "scope": ""
+    },
+    "Font Awesome fa-envelope-o\r": {
+        "prefix": "fa-fa-envelope-o\r",
+        "body": "fa-envelope-o\r",
+        "description": "Font Awesome fa-envelope-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-envelope-square\r": {
+        "prefix": "fa-fa-envelope-square\r",
+        "body": "fa-envelope-square\r",
+        "description": "Font Awesome fa-envelope-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eraser\r": {
+        "prefix": "fa-fa-eraser\r",
+        "body": "fa-eraser\r",
+        "description": "Font Awesome fa-eraser\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eur\r": {
+        "prefix": "fa-fa-eur\r",
+        "body": "fa-eur\r",
+        "description": "Font Awesome fa-eur\r",
+        "scope": ""
+    },
+    "Font Awesome fa-exchange\r": {
+        "prefix": "fa-fa-exchange\r",
+        "body": "fa-exchange\r",
+        "description": "Font Awesome fa-exchange\r",
+        "scope": ""
+    },
+    "Font Awesome fa-exclamation\r": {
+        "prefix": "fa-fa-exclamation\r",
+        "body": "fa-exclamation\r",
+        "description": "Font Awesome fa-exclamation\r",
+        "scope": ""
+    },
+    "Font Awesome fa-exclamation-circle\r": {
+        "prefix": "fa-fa-exclamation-circle\r",
+        "body": "fa-exclamation-circle\r",
+        "description": "Font Awesome fa-exclamation-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-exclamation-triangle\r": {
+        "prefix": "fa-fa-exclamation-triangle\r",
+        "body": "fa-exclamation-triangle\r",
+        "description": "Font Awesome fa-exclamation-triangle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-expand\r": {
+        "prefix": "fa-fa-expand\r",
+        "body": "fa-expand\r",
+        "description": "Font Awesome fa-expand\r",
+        "scope": ""
+    },
+    "Font Awesome fa-expeditedssl\r": {
+        "prefix": "fa-fa-expeditedssl\r",
+        "body": "fa-expeditedssl\r",
+        "description": "Font Awesome fa-expeditedssl\r",
+        "scope": ""
+    },
+    "Font Awesome fa-external-link\r": {
+        "prefix": "fa-fa-external-link\r",
+        "body": "fa-external-link\r",
+        "description": "Font Awesome fa-external-link\r",
+        "scope": ""
+    },
+    "Font Awesome fa-external-link-square\r": {
+        "prefix": "fa-fa-external-link-square\r",
+        "body": "fa-external-link-square\r",
+        "description": "Font Awesome fa-external-link-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eye\r": {
+        "prefix": "fa-fa-eye\r",
+        "body": "fa-eye\r",
+        "description": "Font Awesome fa-eye\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eye-slash\r": {
+        "prefix": "fa-fa-eye-slash\r",
+        "body": "fa-eye-slash\r",
+        "description": "Font Awesome fa-eye-slash\r",
+        "scope": ""
+    },
+    "Font Awesome fa-eyedropper\r": {
+        "prefix": "fa-fa-eyedropper\r",
+        "body": "fa-eyedropper\r",
+        "description": "Font Awesome fa-eyedropper\r",
+        "scope": ""
+    },
+    "Font Awesome fa-facebook\r": {
+        "prefix": "fa-fa-facebook\r",
+        "body": "fa-facebook\r",
+        "description": "Font Awesome fa-facebook\r",
+        "scope": ""
+    },
+    "Font Awesome fa-facebook-official\r": {
+        "prefix": "fa-fa-facebook-official\r",
+        "body": "fa-facebook-official\r",
+        "description": "Font Awesome fa-facebook-official\r",
+        "scope": ""
+    },
+    "Font Awesome fa-facebook-square\r": {
+        "prefix": "fa-fa-facebook-square\r",
+        "body": "fa-facebook-square\r",
+        "description": "Font Awesome fa-facebook-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fast-backward\r": {
+        "prefix": "fa-fa-fast-backward\r",
+        "body": "fa-fast-backward\r",
+        "description": "Font Awesome fa-fast-backward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fast-forward\r": {
+        "prefix": "fa-fa-fast-forward\r",
+        "body": "fa-fast-forward\r",
+        "description": "Font Awesome fa-fast-forward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fax\r": {
+        "prefix": "fa-fa-fax\r",
+        "body": "fa-fax\r",
+        "description": "Font Awesome fa-fax\r",
+        "scope": ""
+    },
+    "Font Awesome fa-female\r": {
+        "prefix": "fa-fa-female\r",
+        "body": "fa-female\r",
+        "description": "Font Awesome fa-female\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fighter-jet\r": {
+        "prefix": "fa-fa-fighter-jet\r",
+        "body": "fa-fighter-jet\r",
+        "description": "Font Awesome fa-fighter-jet\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file\r": {
+        "prefix": "fa-fa-file\r",
+        "body": "fa-file\r",
+        "description": "Font Awesome fa-file\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-archive-o\r": {
+        "prefix": "fa-fa-file-archive-o\r",
+        "body": "fa-file-archive-o\r",
+        "description": "Font Awesome fa-file-archive-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-audio-o\r": {
+        "prefix": "fa-fa-file-audio-o\r",
+        "body": "fa-file-audio-o\r",
+        "description": "Font Awesome fa-file-audio-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-code-o\r": {
+        "prefix": "fa-fa-file-code-o\r",
+        "body": "fa-file-code-o\r",
+        "description": "Font Awesome fa-file-code-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-excel-o\r": {
+        "prefix": "fa-fa-file-excel-o\r",
+        "body": "fa-file-excel-o\r",
+        "description": "Font Awesome fa-file-excel-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-image-o\r": {
+        "prefix": "fa-fa-file-image-o\r",
+        "body": "fa-file-image-o\r",
+        "description": "Font Awesome fa-file-image-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-o\r": {
+        "prefix": "fa-fa-file-o\r",
+        "body": "fa-file-o\r",
+        "description": "Font Awesome fa-file-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-pdf-o\r": {
+        "prefix": "fa-fa-file-pdf-o\r",
+        "body": "fa-file-pdf-o\r",
+        "description": "Font Awesome fa-file-pdf-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-powerpoint-o\r": {
+        "prefix": "fa-fa-file-powerpoint-o\r",
+        "body": "fa-file-powerpoint-o\r",
+        "description": "Font Awesome fa-file-powerpoint-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-text\r": {
+        "prefix": "fa-fa-file-text\r",
+        "body": "fa-file-text\r",
+        "description": "Font Awesome fa-file-text\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-text-o\r": {
+        "prefix": "fa-fa-file-text-o\r",
+        "body": "fa-file-text-o\r",
+        "description": "Font Awesome fa-file-text-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-video-o\r": {
+        "prefix": "fa-fa-file-video-o\r",
+        "body": "fa-file-video-o\r",
+        "description": "Font Awesome fa-file-video-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-file-word-o\r": {
+        "prefix": "fa-fa-file-word-o\r",
+        "body": "fa-file-word-o\r",
+        "description": "Font Awesome fa-file-word-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-files-o\r": {
+        "prefix": "fa-fa-files-o\r",
+        "body": "fa-files-o\r",
+        "description": "Font Awesome fa-files-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-film\r": {
+        "prefix": "fa-fa-film\r",
+        "body": "fa-film\r",
+        "description": "Font Awesome fa-film\r",
+        "scope": ""
+    },
+    "Font Awesome fa-filter\r": {
+        "prefix": "fa-fa-filter\r",
+        "body": "fa-filter\r",
+        "description": "Font Awesome fa-filter\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fire\r": {
+        "prefix": "fa-fa-fire\r",
+        "body": "fa-fire\r",
+        "description": "Font Awesome fa-fire\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fire-extinguisher\r": {
+        "prefix": "fa-fa-fire-extinguisher\r",
+        "body": "fa-fire-extinguisher\r",
+        "description": "Font Awesome fa-fire-extinguisher\r",
+        "scope": ""
+    },
+    "Font Awesome fa-firefox\r": {
+        "prefix": "fa-fa-firefox\r",
+        "body": "fa-firefox\r",
+        "description": "Font Awesome fa-firefox\r",
+        "scope": ""
+    },
+    "Font Awesome fa-flag\r": {
+        "prefix": "fa-fa-flag\r",
+        "body": "fa-flag\r",
+        "description": "Font Awesome fa-flag\r",
+        "scope": ""
+    },
+    "Font Awesome fa-flag-checkered\r": {
+        "prefix": "fa-fa-flag-checkered\r",
+        "body": "fa-flag-checkered\r",
+        "description": "Font Awesome fa-flag-checkered\r",
+        "scope": ""
+    },
+    "Font Awesome fa-flag-o\r": {
+        "prefix": "fa-fa-flag-o\r",
+        "body": "fa-flag-o\r",
+        "description": "Font Awesome fa-flag-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-flask\r": {
+        "prefix": "fa-fa-flask\r",
+        "body": "fa-flask\r",
+        "description": "Font Awesome fa-flask\r",
+        "scope": ""
+    },
+    "Font Awesome fa-flickr\r": {
+        "prefix": "fa-fa-flickr\r",
+        "body": "fa-flickr\r",
+        "description": "Font Awesome fa-flickr\r",
+        "scope": ""
+    },
+    "Font Awesome fa-floppy-o\r": {
+        "prefix": "fa-fa-floppy-o\r",
+        "body": "fa-floppy-o\r",
+        "description": "Font Awesome fa-floppy-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-folder\r": {
+        "prefix": "fa-fa-folder\r",
+        "body": "fa-folder\r",
+        "description": "Font Awesome fa-folder\r",
+        "scope": ""
+    },
+    "Font Awesome fa-folder-o\r": {
+        "prefix": "fa-fa-folder-o\r",
+        "body": "fa-folder-o\r",
+        "description": "Font Awesome fa-folder-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-folder-open\r": {
+        "prefix": "fa-fa-folder-open\r",
+        "body": "fa-folder-open\r",
+        "description": "Font Awesome fa-folder-open\r",
+        "scope": ""
+    },
+    "Font Awesome fa-folder-open-o\r": {
+        "prefix": "fa-fa-folder-open-o\r",
+        "body": "fa-folder-open-o\r",
+        "description": "Font Awesome fa-folder-open-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-font\r": {
+        "prefix": "fa-fa-font\r",
+        "body": "fa-font\r",
+        "description": "Font Awesome fa-font\r",
+        "scope": ""
+    },
+    "Font Awesome fa-fonticons\r": {
+        "prefix": "fa-fa-fonticons\r",
+        "body": "fa-fonticons\r",
+        "description": "Font Awesome fa-fonticons\r",
+        "scope": ""
+    },
+    "Font Awesome fa-forumbee\r": {
+        "prefix": "fa-fa-forumbee\r",
+        "body": "fa-forumbee\r",
+        "description": "Font Awesome fa-forumbee\r",
+        "scope": ""
+    },
+    "Font Awesome fa-forward\r": {
+        "prefix": "fa-fa-forward\r",
+        "body": "fa-forward\r",
+        "description": "Font Awesome fa-forward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-foursquare\r": {
+        "prefix": "fa-fa-foursquare\r",
+        "body": "fa-foursquare\r",
+        "description": "Font Awesome fa-foursquare\r",
+        "scope": ""
+    },
+    "Font Awesome fa-frown-o\r": {
+        "prefix": "fa-fa-frown-o\r",
+        "body": "fa-frown-o\r",
+        "description": "Font Awesome fa-frown-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-futbol-o\r": {
+        "prefix": "fa-fa-futbol-o\r",
+        "body": "fa-futbol-o\r",
+        "description": "Font Awesome fa-futbol-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gamepad\r": {
+        "prefix": "fa-fa-gamepad\r",
+        "body": "fa-gamepad\r",
+        "description": "Font Awesome fa-gamepad\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gavel\r": {
+        "prefix": "fa-fa-gavel\r",
+        "body": "fa-gavel\r",
+        "description": "Font Awesome fa-gavel\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gbp\r": {
+        "prefix": "fa-fa-gbp\r",
+        "body": "fa-gbp\r",
+        "description": "Font Awesome fa-gbp\r",
+        "scope": ""
+    },
+    "Font Awesome fa-genderless\r": {
+        "prefix": "fa-fa-genderless\r",
+        "body": "fa-genderless\r",
+        "description": "Font Awesome fa-genderless\r",
+        "scope": ""
+    },
+    "Font Awesome fa-get-pocket\r": {
+        "prefix": "fa-fa-get-pocket\r",
+        "body": "fa-get-pocket\r",
+        "description": "Font Awesome fa-get-pocket\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gg\r": {
+        "prefix": "fa-fa-gg\r",
+        "body": "fa-gg\r",
+        "description": "Font Awesome fa-gg\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gg-circle\r": {
+        "prefix": "fa-fa-gg-circle\r",
+        "body": "fa-gg-circle\r",
+        "description": "Font Awesome fa-gg-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gift\r": {
+        "prefix": "fa-fa-gift\r",
+        "body": "fa-gift\r",
+        "description": "Font Awesome fa-gift\r",
+        "scope": ""
+    },
+    "Font Awesome fa-git\r": {
+        "prefix": "fa-fa-git\r",
+        "body": "fa-git\r",
+        "description": "Font Awesome fa-git\r",
+        "scope": ""
+    },
+    "Font Awesome fa-git-square\r": {
+        "prefix": "fa-fa-git-square\r",
+        "body": "fa-git-square\r",
+        "description": "Font Awesome fa-git-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-github\r": {
+        "prefix": "fa-fa-github\r",
+        "body": "fa-github\r",
+        "description": "Font Awesome fa-github\r",
+        "scope": ""
+    },
+    "Font Awesome fa-github-alt\r": {
+        "prefix": "fa-fa-github-alt\r",
+        "body": "fa-github-alt\r",
+        "description": "Font Awesome fa-github-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-github-square\r": {
+        "prefix": "fa-fa-github-square\r",
+        "body": "fa-github-square\r",
+        "description": "Font Awesome fa-github-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-globe\r": {
+        "prefix": "fa-fa-globe\r",
+        "body": "fa-globe\r",
+        "description": "Font Awesome fa-globe\r",
+        "scope": ""
+    },
+    "Font Awesome fa-google\r": {
+        "prefix": "fa-fa-google\r",
+        "body": "fa-google\r",
+        "description": "Font Awesome fa-google\r",
+        "scope": ""
+    },
+    "Font Awesome fa-google-plus\r": {
+        "prefix": "fa-fa-google-plus\r",
+        "body": "fa-google-plus\r",
+        "description": "Font Awesome fa-google-plus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-google-plus-square\r": {
+        "prefix": "fa-fa-google-plus-square\r",
+        "body": "fa-google-plus-square\r",
+        "description": "Font Awesome fa-google-plus-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-google-wallet\r": {
+        "prefix": "fa-fa-google-wallet\r",
+        "body": "fa-google-wallet\r",
+        "description": "Font Awesome fa-google-wallet\r",
+        "scope": ""
+    },
+    "Font Awesome fa-graduation-cap\r": {
+        "prefix": "fa-fa-graduation-cap\r",
+        "body": "fa-graduation-cap\r",
+        "description": "Font Awesome fa-graduation-cap\r",
+        "scope": ""
+    },
+    "Font Awesome fa-gratipay\r": {
+        "prefix": "fa-fa-gratipay\r",
+        "body": "fa-gratipay\r",
+        "description": "Font Awesome fa-gratipay\r",
+        "scope": ""
+    },
+    "Font Awesome fa-h-square\r": {
+        "prefix": "fa-fa-h-square\r",
+        "body": "fa-h-square\r",
+        "description": "Font Awesome fa-h-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hacker-news\r": {
+        "prefix": "fa-fa-hacker-news\r",
+        "body": "fa-hacker-news\r",
+        "description": "Font Awesome fa-hacker-news\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-lizard-o\r": {
+        "prefix": "fa-fa-hand-lizard-o\r",
+        "body": "fa-hand-lizard-o\r",
+        "description": "Font Awesome fa-hand-lizard-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-o-down\r": {
+        "prefix": "fa-fa-hand-o-down\r",
+        "body": "fa-hand-o-down\r",
+        "description": "Font Awesome fa-hand-o-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-o-left\r": {
+        "prefix": "fa-fa-hand-o-left\r",
+        "body": "fa-hand-o-left\r",
+        "description": "Font Awesome fa-hand-o-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-o-right\r": {
+        "prefix": "fa-fa-hand-o-right\r",
+        "body": "fa-hand-o-right\r",
+        "description": "Font Awesome fa-hand-o-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-o-up\r": {
+        "prefix": "fa-fa-hand-o-up\r",
+        "body": "fa-hand-o-up\r",
+        "description": "Font Awesome fa-hand-o-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-paper-o\r": {
+        "prefix": "fa-fa-hand-paper-o\r",
+        "body": "fa-hand-paper-o\r",
+        "description": "Font Awesome fa-hand-paper-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-peace-o\r": {
+        "prefix": "fa-fa-hand-peace-o\r",
+        "body": "fa-hand-peace-o\r",
+        "description": "Font Awesome fa-hand-peace-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-pointer-o\r": {
+        "prefix": "fa-fa-hand-pointer-o\r",
+        "body": "fa-hand-pointer-o\r",
+        "description": "Font Awesome fa-hand-pointer-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-rock-o\r": {
+        "prefix": "fa-fa-hand-rock-o\r",
+        "body": "fa-hand-rock-o\r",
+        "description": "Font Awesome fa-hand-rock-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-scissors-o\r": {
+        "prefix": "fa-fa-hand-scissors-o\r",
+        "body": "fa-hand-scissors-o\r",
+        "description": "Font Awesome fa-hand-scissors-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hand-spock-o\r": {
+        "prefix": "fa-fa-hand-spock-o\r",
+        "body": "fa-hand-spock-o\r",
+        "description": "Font Awesome fa-hand-spock-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hdd-o\r": {
+        "prefix": "fa-fa-hdd-o\r",
+        "body": "fa-hdd-o\r",
+        "description": "Font Awesome fa-hdd-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-header\r": {
+        "prefix": "fa-fa-header\r",
+        "body": "fa-header\r",
+        "description": "Font Awesome fa-header\r",
+        "scope": ""
+    },
+    "Font Awesome fa-headphones\r": {
+        "prefix": "fa-fa-headphones\r",
+        "body": "fa-headphones\r",
+        "description": "Font Awesome fa-headphones\r",
+        "scope": ""
+    },
+    "Font Awesome fa-heart\r": {
+        "prefix": "fa-fa-heart\r",
+        "body": "fa-heart\r",
+        "description": "Font Awesome fa-heart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-heart-o\r": {
+        "prefix": "fa-fa-heart-o\r",
+        "body": "fa-heart-o\r",
+        "description": "Font Awesome fa-heart-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-heartbeat\r": {
+        "prefix": "fa-fa-heartbeat\r",
+        "body": "fa-heartbeat\r",
+        "description": "Font Awesome fa-heartbeat\r",
+        "scope": ""
+    },
+    "Font Awesome fa-history\r": {
+        "prefix": "fa-fa-history\r",
+        "body": "fa-history\r",
+        "description": "Font Awesome fa-history\r",
+        "scope": ""
+    },
+    "Font Awesome fa-home\r": {
+        "prefix": "fa-fa-home\r",
+        "body": "fa-home\r",
+        "description": "Font Awesome fa-home\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hospital-o\r": {
+        "prefix": "fa-fa-hospital-o\r",
+        "body": "fa-hospital-o\r",
+        "description": "Font Awesome fa-hospital-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hourglass\r": {
+        "prefix": "fa-fa-hourglass\r",
+        "body": "fa-hourglass\r",
+        "description": "Font Awesome fa-hourglass\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hourglass-end\r": {
+        "prefix": "fa-fa-hourglass-end\r",
+        "body": "fa-hourglass-end\r",
+        "description": "Font Awesome fa-hourglass-end\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hourglass-half\r": {
+        "prefix": "fa-fa-hourglass-half\r",
+        "body": "fa-hourglass-half\r",
+        "description": "Font Awesome fa-hourglass-half\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hourglass-o\r": {
+        "prefix": "fa-fa-hourglass-o\r",
+        "body": "fa-hourglass-o\r",
+        "description": "Font Awesome fa-hourglass-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-hourglass-start\r": {
+        "prefix": "fa-fa-hourglass-start\r",
+        "body": "fa-hourglass-start\r",
+        "description": "Font Awesome fa-hourglass-start\r",
+        "scope": ""
+    },
+    "Font Awesome fa-houzz\r": {
+        "prefix": "fa-fa-houzz\r",
+        "body": "fa-houzz\r",
+        "description": "Font Awesome fa-houzz\r",
+        "scope": ""
+    },
+    "Font Awesome fa-html5\r": {
+        "prefix": "fa-fa-html5\r",
+        "body": "fa-html5\r",
+        "description": "Font Awesome fa-html5\r",
+        "scope": ""
+    },
+    "Font Awesome fa-i-cursor\r": {
+        "prefix": "fa-fa-i-cursor\r",
+        "body": "fa-i-cursor\r",
+        "description": "Font Awesome fa-i-cursor\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ils\r": {
+        "prefix": "fa-fa-ils\r",
+        "body": "fa-ils\r",
+        "description": "Font Awesome fa-ils\r",
+        "scope": ""
+    },
+    "Font Awesome fa-inbox\r": {
+        "prefix": "fa-fa-inbox\r",
+        "body": "fa-inbox\r",
+        "description": "Font Awesome fa-inbox\r",
+        "scope": ""
+    },
+    "Font Awesome fa-indent\r": {
+        "prefix": "fa-fa-indent\r",
+        "body": "fa-indent\r",
+        "description": "Font Awesome fa-indent\r",
+        "scope": ""
+    },
+    "Font Awesome fa-industry\r": {
+        "prefix": "fa-fa-industry\r",
+        "body": "fa-industry\r",
+        "description": "Font Awesome fa-industry\r",
+        "scope": ""
+    },
+    "Font Awesome fa-info\r": {
+        "prefix": "fa-fa-info\r",
+        "body": "fa-info\r",
+        "description": "Font Awesome fa-info\r",
+        "scope": ""
+    },
+    "Font Awesome fa-info-circle\r": {
+        "prefix": "fa-fa-info-circle\r",
+        "body": "fa-info-circle\r",
+        "description": "Font Awesome fa-info-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-inr\r": {
+        "prefix": "fa-fa-inr\r",
+        "body": "fa-inr\r",
+        "description": "Font Awesome fa-inr\r",
+        "scope": ""
+    },
+    "Font Awesome fa-instagram\r": {
+        "prefix": "fa-fa-instagram\r",
+        "body": "fa-instagram\r",
+        "description": "Font Awesome fa-instagram\r",
+        "scope": ""
+    },
+    "Font Awesome fa-internet-explorer\r": {
+        "prefix": "fa-fa-internet-explorer\r",
+        "body": "fa-internet-explorer\r",
+        "description": "Font Awesome fa-internet-explorer\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ioxhost\r": {
+        "prefix": "fa-fa-ioxhost\r",
+        "body": "fa-ioxhost\r",
+        "description": "Font Awesome fa-ioxhost\r",
+        "scope": ""
+    },
+    "Font Awesome fa-italic\r": {
+        "prefix": "fa-fa-italic\r",
+        "body": "fa-italic\r",
+        "description": "Font Awesome fa-italic\r",
+        "scope": ""
+    },
+    "Font Awesome fa-joomla\r": {
+        "prefix": "fa-fa-joomla\r",
+        "body": "fa-joomla\r",
+        "description": "Font Awesome fa-joomla\r",
+        "scope": ""
+    },
+    "Font Awesome fa-jpy\r": {
+        "prefix": "fa-fa-jpy\r",
+        "body": "fa-jpy\r",
+        "description": "Font Awesome fa-jpy\r",
+        "scope": ""
+    },
+    "Font Awesome fa-jsfiddle\r": {
+        "prefix": "fa-fa-jsfiddle\r",
+        "body": "fa-jsfiddle\r",
+        "description": "Font Awesome fa-jsfiddle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-key\r": {
+        "prefix": "fa-fa-key\r",
+        "body": "fa-key\r",
+        "description": "Font Awesome fa-key\r",
+        "scope": ""
+    },
+    "Font Awesome fa-keyboard-o\r": {
+        "prefix": "fa-fa-keyboard-o\r",
+        "body": "fa-keyboard-o\r",
+        "description": "Font Awesome fa-keyboard-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-krw\r": {
+        "prefix": "fa-fa-krw\r",
+        "body": "fa-krw\r",
+        "description": "Font Awesome fa-krw\r",
+        "scope": ""
+    },
+    "Font Awesome fa-language\r": {
+        "prefix": "fa-fa-language\r",
+        "body": "fa-language\r",
+        "description": "Font Awesome fa-language\r",
+        "scope": ""
+    },
+    "Font Awesome fa-laptop\r": {
+        "prefix": "fa-fa-laptop\r",
+        "body": "fa-laptop\r",
+        "description": "Font Awesome fa-laptop\r",
+        "scope": ""
+    },
+    "Font Awesome fa-lastfm\r": {
+        "prefix": "fa-fa-lastfm\r",
+        "body": "fa-lastfm\r",
+        "description": "Font Awesome fa-lastfm\r",
+        "scope": ""
+    },
+    "Font Awesome fa-lastfm-square\r": {
+        "prefix": "fa-fa-lastfm-square\r",
+        "body": "fa-lastfm-square\r",
+        "description": "Font Awesome fa-lastfm-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-leaf\r": {
+        "prefix": "fa-fa-leaf\r",
+        "body": "fa-leaf\r",
+        "description": "Font Awesome fa-leaf\r",
+        "scope": ""
+    },
+    "Font Awesome fa-leanpub\r": {
+        "prefix": "fa-fa-leanpub\r",
+        "body": "fa-leanpub\r",
+        "description": "Font Awesome fa-leanpub\r",
+        "scope": ""
+    },
+    "Font Awesome fa-lemon-o\r": {
+        "prefix": "fa-fa-lemon-o\r",
+        "body": "fa-lemon-o\r",
+        "description": "Font Awesome fa-lemon-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-level-down\r": {
+        "prefix": "fa-fa-level-down\r",
+        "body": "fa-level-down\r",
+        "description": "Font Awesome fa-level-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-level-up\r": {
+        "prefix": "fa-fa-level-up\r",
+        "body": "fa-level-up\r",
+        "description": "Font Awesome fa-level-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-life-ring\r": {
+        "prefix": "fa-fa-life-ring\r",
+        "body": "fa-life-ring\r",
+        "description": "Font Awesome fa-life-ring\r",
+        "scope": ""
+    },
+    "Font Awesome fa-lightbulb-o\r": {
+        "prefix": "fa-fa-lightbulb-o\r",
+        "body": "fa-lightbulb-o\r",
+        "description": "Font Awesome fa-lightbulb-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-line-chart\r": {
+        "prefix": "fa-fa-line-chart\r",
+        "body": "fa-line-chart\r",
+        "description": "Font Awesome fa-line-chart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-link\r": {
+        "prefix": "fa-fa-link\r",
+        "body": "fa-link\r",
+        "description": "Font Awesome fa-link\r",
+        "scope": ""
+    },
+    "Font Awesome fa-linkedin\r": {
+        "prefix": "fa-fa-linkedin\r",
+        "body": "fa-linkedin\r",
+        "description": "Font Awesome fa-linkedin\r",
+        "scope": ""
+    },
+    "Font Awesome fa-linkedin-square\r": {
+        "prefix": "fa-fa-linkedin-square\r",
+        "body": "fa-linkedin-square\r",
+        "description": "Font Awesome fa-linkedin-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-linux\r": {
+        "prefix": "fa-fa-linux\r",
+        "body": "fa-linux\r",
+        "description": "Font Awesome fa-linux\r",
+        "scope": ""
+    },
+    "Font Awesome fa-list\r": {
+        "prefix": "fa-fa-list\r",
+        "body": "fa-list\r",
+        "description": "Font Awesome fa-list\r",
+        "scope": ""
+    },
+    "Font Awesome fa-list-alt\r": {
+        "prefix": "fa-fa-list-alt\r",
+        "body": "fa-list-alt\r",
+        "description": "Font Awesome fa-list-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-list-ol\r": {
+        "prefix": "fa-fa-list-ol\r",
+        "body": "fa-list-ol\r",
+        "description": "Font Awesome fa-list-ol\r",
+        "scope": ""
+    },
+    "Font Awesome fa-list-ul\r": {
+        "prefix": "fa-fa-list-ul\r",
+        "body": "fa-list-ul\r",
+        "description": "Font Awesome fa-list-ul\r",
+        "scope": ""
+    },
+    "Font Awesome fa-location-arrow\r": {
+        "prefix": "fa-fa-location-arrow\r",
+        "body": "fa-location-arrow\r",
+        "description": "Font Awesome fa-location-arrow\r",
+        "scope": ""
+    },
+    "Font Awesome fa-lock\r": {
+        "prefix": "fa-fa-lock\r",
+        "body": "fa-lock\r",
+        "description": "Font Awesome fa-lock\r",
+        "scope": ""
+    },
+    "Font Awesome fa-long-arrow-down\r": {
+        "prefix": "fa-fa-long-arrow-down\r",
+        "body": "fa-long-arrow-down\r",
+        "description": "Font Awesome fa-long-arrow-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-long-arrow-left\r": {
+        "prefix": "fa-fa-long-arrow-left\r",
+        "body": "fa-long-arrow-left\r",
+        "description": "Font Awesome fa-long-arrow-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-long-arrow-right\r": {
+        "prefix": "fa-fa-long-arrow-right\r",
+        "body": "fa-long-arrow-right\r",
+        "description": "Font Awesome fa-long-arrow-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-long-arrow-up\r": {
+        "prefix": "fa-fa-long-arrow-up\r",
+        "body": "fa-long-arrow-up\r",
+        "description": "Font Awesome fa-long-arrow-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-magic\r": {
+        "prefix": "fa-fa-magic\r",
+        "body": "fa-magic\r",
+        "description": "Font Awesome fa-magic\r",
+        "scope": ""
+    },
+    "Font Awesome fa-magnet\r": {
+        "prefix": "fa-fa-magnet\r",
+        "body": "fa-magnet\r",
+        "description": "Font Awesome fa-magnet\r",
+        "scope": ""
+    },
+    "Font Awesome fa-male\r": {
+        "prefix": "fa-fa-male\r",
+        "body": "fa-male\r",
+        "description": "Font Awesome fa-male\r",
+        "scope": ""
+    },
+    "Font Awesome fa-map\r": {
+        "prefix": "fa-fa-map\r",
+        "body": "fa-map\r",
+        "description": "Font Awesome fa-map\r",
+        "scope": ""
+    },
+    "Font Awesome fa-map-marker\r": {
+        "prefix": "fa-fa-map-marker\r",
+        "body": "fa-map-marker\r",
+        "description": "Font Awesome fa-map-marker\r",
+        "scope": ""
+    },
+    "Font Awesome fa-map-o\r": {
+        "prefix": "fa-fa-map-o\r",
+        "body": "fa-map-o\r",
+        "description": "Font Awesome fa-map-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-map-pin\r": {
+        "prefix": "fa-fa-map-pin\r",
+        "body": "fa-map-pin\r",
+        "description": "Font Awesome fa-map-pin\r",
+        "scope": ""
+    },
+    "Font Awesome fa-map-signs\r": {
+        "prefix": "fa-fa-map-signs\r",
+        "body": "fa-map-signs\r",
+        "description": "Font Awesome fa-map-signs\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mars\r": {
+        "prefix": "fa-fa-mars\r",
+        "body": "fa-mars\r",
+        "description": "Font Awesome fa-mars\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mars-double\r": {
+        "prefix": "fa-fa-mars-double\r",
+        "body": "fa-mars-double\r",
+        "description": "Font Awesome fa-mars-double\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mars-stroke\r": {
+        "prefix": "fa-fa-mars-stroke\r",
+        "body": "fa-mars-stroke\r",
+        "description": "Font Awesome fa-mars-stroke\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mars-stroke-h\r": {
+        "prefix": "fa-fa-mars-stroke-h\r",
+        "body": "fa-mars-stroke-h\r",
+        "description": "Font Awesome fa-mars-stroke-h\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mars-stroke-v\r": {
+        "prefix": "fa-fa-mars-stroke-v\r",
+        "body": "fa-mars-stroke-v\r",
+        "description": "Font Awesome fa-mars-stroke-v\r",
+        "scope": ""
+    },
+    "Font Awesome fa-maxcdn\r": {
+        "prefix": "fa-fa-maxcdn\r",
+        "body": "fa-maxcdn\r",
+        "description": "Font Awesome fa-maxcdn\r",
+        "scope": ""
+    },
+    "Font Awesome fa-meanpath\r": {
+        "prefix": "fa-fa-meanpath\r",
+        "body": "fa-meanpath\r",
+        "description": "Font Awesome fa-meanpath\r",
+        "scope": ""
+    },
+    "Font Awesome fa-medium\r": {
+        "prefix": "fa-fa-medium\r",
+        "body": "fa-medium\r",
+        "description": "Font Awesome fa-medium\r",
+        "scope": ""
+    },
+    "Font Awesome fa-medkit\r": {
+        "prefix": "fa-fa-medkit\r",
+        "body": "fa-medkit\r",
+        "description": "Font Awesome fa-medkit\r",
+        "scope": ""
+    },
+    "Font Awesome fa-meh-o\r": {
+        "prefix": "fa-fa-meh-o\r",
+        "body": "fa-meh-o\r",
+        "description": "Font Awesome fa-meh-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mercury\r": {
+        "prefix": "fa-fa-mercury\r",
+        "body": "fa-mercury\r",
+        "description": "Font Awesome fa-mercury\r",
+        "scope": ""
+    },
+    "Font Awesome fa-microphone\r": {
+        "prefix": "fa-fa-microphone\r",
+        "body": "fa-microphone\r",
+        "description": "Font Awesome fa-microphone\r",
+        "scope": ""
+    },
+    "Font Awesome fa-microphone-slash\r": {
+        "prefix": "fa-fa-microphone-slash\r",
+        "body": "fa-microphone-slash\r",
+        "description": "Font Awesome fa-microphone-slash\r",
+        "scope": ""
+    },
+    "Font Awesome fa-minus\r": {
+        "prefix": "fa-fa-minus\r",
+        "body": "fa-minus\r",
+        "description": "Font Awesome fa-minus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-minus-circle\r": {
+        "prefix": "fa-fa-minus-circle\r",
+        "body": "fa-minus-circle\r",
+        "description": "Font Awesome fa-minus-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-minus-square\r": {
+        "prefix": "fa-fa-minus-square\r",
+        "body": "fa-minus-square\r",
+        "description": "Font Awesome fa-minus-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-minus-square-o\r": {
+        "prefix": "fa-fa-minus-square-o\r",
+        "body": "fa-minus-square-o\r",
+        "description": "Font Awesome fa-minus-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mobile\r": {
+        "prefix": "fa-fa-mobile\r",
+        "body": "fa-mobile\r",
+        "description": "Font Awesome fa-mobile\r",
+        "scope": ""
+    },
+    "Font Awesome fa-money\r": {
+        "prefix": "fa-fa-money\r",
+        "body": "fa-money\r",
+        "description": "Font Awesome fa-money\r",
+        "scope": ""
+    },
+    "Font Awesome fa-moon-o\r": {
+        "prefix": "fa-fa-moon-o\r",
+        "body": "fa-moon-o\r",
+        "description": "Font Awesome fa-moon-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-motorcycle\r": {
+        "prefix": "fa-fa-motorcycle\r",
+        "body": "fa-motorcycle\r",
+        "description": "Font Awesome fa-motorcycle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-mouse-pointer\r": {
+        "prefix": "fa-fa-mouse-pointer\r",
+        "body": "fa-mouse-pointer\r",
+        "description": "Font Awesome fa-mouse-pointer\r",
+        "scope": ""
+    },
+    "Font Awesome fa-music\r": {
+        "prefix": "fa-fa-music\r",
+        "body": "fa-music\r",
+        "description": "Font Awesome fa-music\r",
+        "scope": ""
+    },
+    "Font Awesome fa-neuter\r": {
+        "prefix": "fa-fa-neuter\r",
+        "body": "fa-neuter\r",
+        "description": "Font Awesome fa-neuter\r",
+        "scope": ""
+    },
+    "Font Awesome fa-newspaper-o\r": {
+        "prefix": "fa-fa-newspaper-o\r",
+        "body": "fa-newspaper-o\r",
+        "description": "Font Awesome fa-newspaper-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-object-group\r": {
+        "prefix": "fa-fa-object-group\r",
+        "body": "fa-object-group\r",
+        "description": "Font Awesome fa-object-group\r",
+        "scope": ""
+    },
+    "Font Awesome fa-object-ungroup\r": {
+        "prefix": "fa-fa-object-ungroup\r",
+        "body": "fa-object-ungroup\r",
+        "description": "Font Awesome fa-object-ungroup\r",
+        "scope": ""
+    },
+    "Font Awesome fa-odnoklassniki\r": {
+        "prefix": "fa-fa-odnoklassniki\r",
+        "body": "fa-odnoklassniki\r",
+        "description": "Font Awesome fa-odnoklassniki\r",
+        "scope": ""
+    },
+    "Font Awesome fa-odnoklassniki-square\r": {
+        "prefix": "fa-fa-odnoklassniki-square\r",
+        "body": "fa-odnoklassniki-square\r",
+        "description": "Font Awesome fa-odnoklassniki-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-opencart\r": {
+        "prefix": "fa-fa-opencart\r",
+        "body": "fa-opencart\r",
+        "description": "Font Awesome fa-opencart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-openid\r": {
+        "prefix": "fa-fa-openid\r",
+        "body": "fa-openid\r",
+        "description": "Font Awesome fa-openid\r",
+        "scope": ""
+    },
+    "Font Awesome fa-opera\r": {
+        "prefix": "fa-fa-opera\r",
+        "body": "fa-opera\r",
+        "description": "Font Awesome fa-opera\r",
+        "scope": ""
+    },
+    "Font Awesome fa-optin-monster\r": {
+        "prefix": "fa-fa-optin-monster\r",
+        "body": "fa-optin-monster\r",
+        "description": "Font Awesome fa-optin-monster\r",
+        "scope": ""
+    },
+    "Font Awesome fa-outdent\r": {
+        "prefix": "fa-fa-outdent\r",
+        "body": "fa-outdent\r",
+        "description": "Font Awesome fa-outdent\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pagelines\r": {
+        "prefix": "fa-fa-pagelines\r",
+        "body": "fa-pagelines\r",
+        "description": "Font Awesome fa-pagelines\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paint-brush\r": {
+        "prefix": "fa-fa-paint-brush\r",
+        "body": "fa-paint-brush\r",
+        "description": "Font Awesome fa-paint-brush\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paper-plane\r": {
+        "prefix": "fa-fa-paper-plane\r",
+        "body": "fa-paper-plane\r",
+        "description": "Font Awesome fa-paper-plane\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paper-plane-o\r": {
+        "prefix": "fa-fa-paper-plane-o\r",
+        "body": "fa-paper-plane-o\r",
+        "description": "Font Awesome fa-paper-plane-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paperclip\r": {
+        "prefix": "fa-fa-paperclip\r",
+        "body": "fa-paperclip\r",
+        "description": "Font Awesome fa-paperclip\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paragraph\r": {
+        "prefix": "fa-fa-paragraph\r",
+        "body": "fa-paragraph\r",
+        "description": "Font Awesome fa-paragraph\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pause\r": {
+        "prefix": "fa-fa-pause\r",
+        "body": "fa-pause\r",
+        "description": "Font Awesome fa-pause\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paw\r": {
+        "prefix": "fa-fa-paw\r",
+        "body": "fa-paw\r",
+        "description": "Font Awesome fa-paw\r",
+        "scope": ""
+    },
+    "Font Awesome fa-paypal\r": {
+        "prefix": "fa-fa-paypal\r",
+        "body": "fa-paypal\r",
+        "description": "Font Awesome fa-paypal\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pencil\r": {
+        "prefix": "fa-fa-pencil\r",
+        "body": "fa-pencil\r",
+        "description": "Font Awesome fa-pencil\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pencil-square\r": {
+        "prefix": "fa-fa-pencil-square\r",
+        "body": "fa-pencil-square\r",
+        "description": "Font Awesome fa-pencil-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pencil-square-o\r": {
+        "prefix": "fa-fa-pencil-square-o\r",
+        "body": "fa-pencil-square-o\r",
+        "description": "Font Awesome fa-pencil-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-phone\r": {
+        "prefix": "fa-fa-phone\r",
+        "body": "fa-phone\r",
+        "description": "Font Awesome fa-phone\r",
+        "scope": ""
+    },
+    "Font Awesome fa-phone-square\r": {
+        "prefix": "fa-fa-phone-square\r",
+        "body": "fa-phone-square\r",
+        "description": "Font Awesome fa-phone-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-picture-o\r": {
+        "prefix": "fa-fa-picture-o\r",
+        "body": "fa-picture-o\r",
+        "description": "Font Awesome fa-picture-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pie-chart\r": {
+        "prefix": "fa-fa-pie-chart\r",
+        "body": "fa-pie-chart\r",
+        "description": "Font Awesome fa-pie-chart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pied-piper\r": {
+        "prefix": "fa-fa-pied-piper\r",
+        "body": "fa-pied-piper\r",
+        "description": "Font Awesome fa-pied-piper\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pied-piper-alt\r": {
+        "prefix": "fa-fa-pied-piper-alt\r",
+        "body": "fa-pied-piper-alt\r",
+        "description": "Font Awesome fa-pied-piper-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pinterest\r": {
+        "prefix": "fa-fa-pinterest\r",
+        "body": "fa-pinterest\r",
+        "description": "Font Awesome fa-pinterest\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pinterest-p\r": {
+        "prefix": "fa-fa-pinterest-p\r",
+        "body": "fa-pinterest-p\r",
+        "description": "Font Awesome fa-pinterest-p\r",
+        "scope": ""
+    },
+    "Font Awesome fa-pinterest-square\r": {
+        "prefix": "fa-fa-pinterest-square\r",
+        "body": "fa-pinterest-square\r",
+        "description": "Font Awesome fa-pinterest-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plane\r": {
+        "prefix": "fa-fa-plane\r",
+        "body": "fa-plane\r",
+        "description": "Font Awesome fa-plane\r",
+        "scope": ""
+    },
+    "Font Awesome fa-play\r": {
+        "prefix": "fa-fa-play\r",
+        "body": "fa-play\r",
+        "description": "Font Awesome fa-play\r",
+        "scope": ""
+    },
+    "Font Awesome fa-play-circle\r": {
+        "prefix": "fa-fa-play-circle\r",
+        "body": "fa-play-circle\r",
+        "description": "Font Awesome fa-play-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-play-circle-o\r": {
+        "prefix": "fa-fa-play-circle-o\r",
+        "body": "fa-play-circle-o\r",
+        "description": "Font Awesome fa-play-circle-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plug\r": {
+        "prefix": "fa-fa-plug\r",
+        "body": "fa-plug\r",
+        "description": "Font Awesome fa-plug\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plus\r": {
+        "prefix": "fa-fa-plus\r",
+        "body": "fa-plus\r",
+        "description": "Font Awesome fa-plus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plus-circle\r": {
+        "prefix": "fa-fa-plus-circle\r",
+        "body": "fa-plus-circle\r",
+        "description": "Font Awesome fa-plus-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plus-square\r": {
+        "prefix": "fa-fa-plus-square\r",
+        "body": "fa-plus-square\r",
+        "description": "Font Awesome fa-plus-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-plus-square-o\r": {
+        "prefix": "fa-fa-plus-square-o\r",
+        "body": "fa-plus-square-o\r",
+        "description": "Font Awesome fa-plus-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-power-off\r": {
+        "prefix": "fa-fa-power-off\r",
+        "body": "fa-power-off\r",
+        "description": "Font Awesome fa-power-off\r",
+        "scope": ""
+    },
+    "Font Awesome fa-print\r": {
+        "prefix": "fa-fa-print\r",
+        "body": "fa-print\r",
+        "description": "Font Awesome fa-print\r",
+        "scope": ""
+    },
+    "Font Awesome fa-puzzle-piece\r": {
+        "prefix": "fa-fa-puzzle-piece\r",
+        "body": "fa-puzzle-piece\r",
+        "description": "Font Awesome fa-puzzle-piece\r",
+        "scope": ""
+    },
+    "Font Awesome fa-qq\r": {
+        "prefix": "fa-fa-qq\r",
+        "body": "fa-qq\r",
+        "description": "Font Awesome fa-qq\r",
+        "scope": ""
+    },
+    "Font Awesome fa-qrcode\r": {
+        "prefix": "fa-fa-qrcode\r",
+        "body": "fa-qrcode\r",
+        "description": "Font Awesome fa-qrcode\r",
+        "scope": ""
+    },
+    "Font Awesome fa-question\r": {
+        "prefix": "fa-fa-question\r",
+        "body": "fa-question\r",
+        "description": "Font Awesome fa-question\r",
+        "scope": ""
+    },
+    "Font Awesome fa-question-circle\r": {
+        "prefix": "fa-fa-question-circle\r",
+        "body": "fa-question-circle\r",
+        "description": "Font Awesome fa-question-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-quote-left\r": {
+        "prefix": "fa-fa-quote-left\r",
+        "body": "fa-quote-left\r",
+        "description": "Font Awesome fa-quote-left\r",
+        "scope": ""
+    },
+    "Font Awesome fa-quote-right\r": {
+        "prefix": "fa-fa-quote-right\r",
+        "body": "fa-quote-right\r",
+        "description": "Font Awesome fa-quote-right\r",
+        "scope": ""
+    },
+    "Font Awesome fa-random\r": {
+        "prefix": "fa-fa-random\r",
+        "body": "fa-random\r",
+        "description": "Font Awesome fa-random\r",
+        "scope": ""
+    },
+    "Font Awesome fa-rebel\r": {
+        "prefix": "fa-fa-rebel\r",
+        "body": "fa-rebel\r",
+        "description": "Font Awesome fa-rebel\r",
+        "scope": ""
+    },
+    "Font Awesome fa-recycle\r": {
+        "prefix": "fa-fa-recycle\r",
+        "body": "fa-recycle\r",
+        "description": "Font Awesome fa-recycle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-reddit\r": {
+        "prefix": "fa-fa-reddit\r",
+        "body": "fa-reddit\r",
+        "description": "Font Awesome fa-reddit\r",
+        "scope": ""
+    },
+    "Font Awesome fa-reddit-square\r": {
+        "prefix": "fa-fa-reddit-square\r",
+        "body": "fa-reddit-square\r",
+        "description": "Font Awesome fa-reddit-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-refresh\r": {
+        "prefix": "fa-fa-refresh\r",
+        "body": "fa-refresh\r",
+        "description": "Font Awesome fa-refresh\r",
+        "scope": ""
+    },
+    "Font Awesome fa-registered\r": {
+        "prefix": "fa-fa-registered\r",
+        "body": "fa-registered\r",
+        "description": "Font Awesome fa-registered\r",
+        "scope": ""
+    },
+    "Font Awesome fa-renren\r": {
+        "prefix": "fa-fa-renren\r",
+        "body": "fa-renren\r",
+        "description": "Font Awesome fa-renren\r",
+        "scope": ""
+    },
+    "Font Awesome fa-repeat\r": {
+        "prefix": "fa-fa-repeat\r",
+        "body": "fa-repeat\r",
+        "description": "Font Awesome fa-repeat\r",
+        "scope": ""
+    },
+    "Font Awesome fa-reply\r": {
+        "prefix": "fa-fa-reply\r",
+        "body": "fa-reply\r",
+        "description": "Font Awesome fa-reply\r",
+        "scope": ""
+    },
+    "Font Awesome fa-reply-all\r": {
+        "prefix": "fa-fa-reply-all\r",
+        "body": "fa-reply-all\r",
+        "description": "Font Awesome fa-reply-all\r",
+        "scope": ""
+    },
+    "Font Awesome fa-retweet\r": {
+        "prefix": "fa-fa-retweet\r",
+        "body": "fa-retweet\r",
+        "description": "Font Awesome fa-retweet\r",
+        "scope": ""
+    },
+    "Font Awesome fa-road\r": {
+        "prefix": "fa-fa-road\r",
+        "body": "fa-road\r",
+        "description": "Font Awesome fa-road\r",
+        "scope": ""
+    },
+    "Font Awesome fa-rocket\r": {
+        "prefix": "fa-fa-rocket\r",
+        "body": "fa-rocket\r",
+        "description": "Font Awesome fa-rocket\r",
+        "scope": ""
+    },
+    "Font Awesome fa-rss\r": {
+        "prefix": "fa-fa-rss\r",
+        "body": "fa-rss\r",
+        "description": "Font Awesome fa-rss\r",
+        "scope": ""
+    },
+    "Font Awesome fa-rss-square\r": {
+        "prefix": "fa-fa-rss-square\r",
+        "body": "fa-rss-square\r",
+        "description": "Font Awesome fa-rss-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-rub\r": {
+        "prefix": "fa-fa-rub\r",
+        "body": "fa-rub\r",
+        "description": "Font Awesome fa-rub\r",
+        "scope": ""
+    },
+    "Font Awesome fa-safari\r": {
+        "prefix": "fa-fa-safari\r",
+        "body": "fa-safari\r",
+        "description": "Font Awesome fa-safari\r",
+        "scope": ""
+    },
+    "Font Awesome fa-scissors\r": {
+        "prefix": "fa-fa-scissors\r",
+        "body": "fa-scissors\r",
+        "description": "Font Awesome fa-scissors\r",
+        "scope": ""
+    },
+    "Font Awesome fa-search\r": {
+        "prefix": "fa-fa-search\r",
+        "body": "fa-search\r",
+        "description": "Font Awesome fa-search\r",
+        "scope": ""
+    },
+    "Font Awesome fa-search-minus\r": {
+        "prefix": "fa-fa-search-minus\r",
+        "body": "fa-search-minus\r",
+        "description": "Font Awesome fa-search-minus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-search-plus\r": {
+        "prefix": "fa-fa-search-plus\r",
+        "body": "fa-search-plus\r",
+        "description": "Font Awesome fa-search-plus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sellsy\r": {
+        "prefix": "fa-fa-sellsy\r",
+        "body": "fa-sellsy\r",
+        "description": "Font Awesome fa-sellsy\r",
+        "scope": ""
+    },
+    "Font Awesome fa-server\r": {
+        "prefix": "fa-fa-server\r",
+        "body": "fa-server\r",
+        "description": "Font Awesome fa-server\r",
+        "scope": ""
+    },
+    "Font Awesome fa-share\r": {
+        "prefix": "fa-fa-share\r",
+        "body": "fa-share\r",
+        "description": "Font Awesome fa-share\r",
+        "scope": ""
+    },
+    "Font Awesome fa-share-alt\r": {
+        "prefix": "fa-fa-share-alt\r",
+        "body": "fa-share-alt\r",
+        "description": "Font Awesome fa-share-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-share-alt-square\r": {
+        "prefix": "fa-fa-share-alt-square\r",
+        "body": "fa-share-alt-square\r",
+        "description": "Font Awesome fa-share-alt-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-share-square\r": {
+        "prefix": "fa-fa-share-square\r",
+        "body": "fa-share-square\r",
+        "description": "Font Awesome fa-share-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-share-square-o\r": {
+        "prefix": "fa-fa-share-square-o\r",
+        "body": "fa-share-square-o\r",
+        "description": "Font Awesome fa-share-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-shield\r": {
+        "prefix": "fa-fa-shield\r",
+        "body": "fa-shield\r",
+        "description": "Font Awesome fa-shield\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ship\r": {
+        "prefix": "fa-fa-ship\r",
+        "body": "fa-ship\r",
+        "description": "Font Awesome fa-ship\r",
+        "scope": ""
+    },
+    "Font Awesome fa-shirtsinbulk\r": {
+        "prefix": "fa-fa-shirtsinbulk\r",
+        "body": "fa-shirtsinbulk\r",
+        "description": "Font Awesome fa-shirtsinbulk\r",
+        "scope": ""
+    },
+    "Font Awesome fa-shopping-cart\r": {
+        "prefix": "fa-fa-shopping-cart\r",
+        "body": "fa-shopping-cart\r",
+        "description": "Font Awesome fa-shopping-cart\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sign-in\r": {
+        "prefix": "fa-fa-sign-in\r",
+        "body": "fa-sign-in\r",
+        "description": "Font Awesome fa-sign-in\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sign-out\r": {
+        "prefix": "fa-fa-sign-out\r",
+        "body": "fa-sign-out\r",
+        "description": "Font Awesome fa-sign-out\r",
+        "scope": ""
+    },
+    "Font Awesome fa-signal\r": {
+        "prefix": "fa-fa-signal\r",
+        "body": "fa-signal\r",
+        "description": "Font Awesome fa-signal\r",
+        "scope": ""
+    },
+    "Font Awesome fa-simplybuilt\r": {
+        "prefix": "fa-fa-simplybuilt\r",
+        "body": "fa-simplybuilt\r",
+        "description": "Font Awesome fa-simplybuilt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sitemap\r": {
+        "prefix": "fa-fa-sitemap\r",
+        "body": "fa-sitemap\r",
+        "description": "Font Awesome fa-sitemap\r",
+        "scope": ""
+    },
+    "Font Awesome fa-skyatlas\r": {
+        "prefix": "fa-fa-skyatlas\r",
+        "body": "fa-skyatlas\r",
+        "description": "Font Awesome fa-skyatlas\r",
+        "scope": ""
+    },
+    "Font Awesome fa-skype\r": {
+        "prefix": "fa-fa-skype\r",
+        "body": "fa-skype\r",
+        "description": "Font Awesome fa-skype\r",
+        "scope": ""
+    },
+    "Font Awesome fa-slack\r": {
+        "prefix": "fa-fa-slack\r",
+        "body": "fa-slack\r",
+        "description": "Font Awesome fa-slack\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sliders\r": {
+        "prefix": "fa-fa-sliders\r",
+        "body": "fa-sliders\r",
+        "description": "Font Awesome fa-sliders\r",
+        "scope": ""
+    },
+    "Font Awesome fa-slideshare\r": {
+        "prefix": "fa-fa-slideshare\r",
+        "body": "fa-slideshare\r",
+        "description": "Font Awesome fa-slideshare\r",
+        "scope": ""
+    },
+    "Font Awesome fa-smile-o\r": {
+        "prefix": "fa-fa-smile-o\r",
+        "body": "fa-smile-o\r",
+        "description": "Font Awesome fa-smile-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort\r": {
+        "prefix": "fa-fa-sort\r",
+        "body": "fa-sort\r",
+        "description": "Font Awesome fa-sort\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-alpha-asc\r": {
+        "prefix": "fa-fa-sort-alpha-asc\r",
+        "body": "fa-sort-alpha-asc\r",
+        "description": "Font Awesome fa-sort-alpha-asc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-alpha-desc\r": {
+        "prefix": "fa-fa-sort-alpha-desc\r",
+        "body": "fa-sort-alpha-desc\r",
+        "description": "Font Awesome fa-sort-alpha-desc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-amount-asc\r": {
+        "prefix": "fa-fa-sort-amount-asc\r",
+        "body": "fa-sort-amount-asc\r",
+        "description": "Font Awesome fa-sort-amount-asc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-amount-desc\r": {
+        "prefix": "fa-fa-sort-amount-desc\r",
+        "body": "fa-sort-amount-desc\r",
+        "description": "Font Awesome fa-sort-amount-desc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-asc\r": {
+        "prefix": "fa-fa-sort-asc\r",
+        "body": "fa-sort-asc\r",
+        "description": "Font Awesome fa-sort-asc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-desc\r": {
+        "prefix": "fa-fa-sort-desc\r",
+        "body": "fa-sort-desc\r",
+        "description": "Font Awesome fa-sort-desc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-numeric-asc\r": {
+        "prefix": "fa-fa-sort-numeric-asc\r",
+        "body": "fa-sort-numeric-asc\r",
+        "description": "Font Awesome fa-sort-numeric-asc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sort-numeric-desc\r": {
+        "prefix": "fa-fa-sort-numeric-desc\r",
+        "body": "fa-sort-numeric-desc\r",
+        "description": "Font Awesome fa-sort-numeric-desc\r",
+        "scope": ""
+    },
+    "Font Awesome fa-soundcloud\r": {
+        "prefix": "fa-fa-soundcloud\r",
+        "body": "fa-soundcloud\r",
+        "description": "Font Awesome fa-soundcloud\r",
+        "scope": ""
+    },
+    "Font Awesome fa-space-shuttle\r": {
+        "prefix": "fa-fa-space-shuttle\r",
+        "body": "fa-space-shuttle\r",
+        "description": "Font Awesome fa-space-shuttle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-spinner\r": {
+        "prefix": "fa-fa-spinner\r",
+        "body": "fa-spinner\r",
+        "description": "Font Awesome fa-spinner\r",
+        "scope": ""
+    },
+    "Font Awesome fa-spoon\r": {
+        "prefix": "fa-fa-spoon\r",
+        "body": "fa-spoon\r",
+        "description": "Font Awesome fa-spoon\r",
+        "scope": ""
+    },
+    "Font Awesome fa-spotify\r": {
+        "prefix": "fa-fa-spotify\r",
+        "body": "fa-spotify\r",
+        "description": "Font Awesome fa-spotify\r",
+        "scope": ""
+    },
+    "Font Awesome fa-square\r": {
+        "prefix": "fa-fa-square\r",
+        "body": "fa-square\r",
+        "description": "Font Awesome fa-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-square-o\r": {
+        "prefix": "fa-fa-square-o\r",
+        "body": "fa-square-o\r",
+        "description": "Font Awesome fa-square-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stack-exchange\r": {
+        "prefix": "fa-fa-stack-exchange\r",
+        "body": "fa-stack-exchange\r",
+        "description": "Font Awesome fa-stack-exchange\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stack-overflow\r": {
+        "prefix": "fa-fa-stack-overflow\r",
+        "body": "fa-stack-overflow\r",
+        "description": "Font Awesome fa-stack-overflow\r",
+        "scope": ""
+    },
+    "Font Awesome fa-star\r": {
+        "prefix": "fa-fa-star\r",
+        "body": "fa-star\r",
+        "description": "Font Awesome fa-star\r",
+        "scope": ""
+    },
+    "Font Awesome fa-star-half\r": {
+        "prefix": "fa-fa-star-half\r",
+        "body": "fa-star-half\r",
+        "description": "Font Awesome fa-star-half\r",
+        "scope": ""
+    },
+    "Font Awesome fa-star-half-o\r": {
+        "prefix": "fa-fa-star-half-o\r",
+        "body": "fa-star-half-o\r",
+        "description": "Font Awesome fa-star-half-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-star-o\r": {
+        "prefix": "fa-fa-star-o\r",
+        "body": "fa-star-o\r",
+        "description": "Font Awesome fa-star-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-steam\r": {
+        "prefix": "fa-fa-steam\r",
+        "body": "fa-steam\r",
+        "description": "Font Awesome fa-steam\r",
+        "scope": ""
+    },
+    "Font Awesome fa-steam-square\r": {
+        "prefix": "fa-fa-steam-square\r",
+        "body": "fa-steam-square\r",
+        "description": "Font Awesome fa-steam-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-step-backward\r": {
+        "prefix": "fa-fa-step-backward\r",
+        "body": "fa-step-backward\r",
+        "description": "Font Awesome fa-step-backward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-step-forward\r": {
+        "prefix": "fa-fa-step-forward\r",
+        "body": "fa-step-forward\r",
+        "description": "Font Awesome fa-step-forward\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stethoscope\r": {
+        "prefix": "fa-fa-stethoscope\r",
+        "body": "fa-stethoscope\r",
+        "description": "Font Awesome fa-stethoscope\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sticky-note\r": {
+        "prefix": "fa-fa-sticky-note\r",
+        "body": "fa-sticky-note\r",
+        "description": "Font Awesome fa-sticky-note\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sticky-note-o\r": {
+        "prefix": "fa-fa-sticky-note-o\r",
+        "body": "fa-sticky-note-o\r",
+        "description": "Font Awesome fa-sticky-note-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stop\r": {
+        "prefix": "fa-fa-stop\r",
+        "body": "fa-stop\r",
+        "description": "Font Awesome fa-stop\r",
+        "scope": ""
+    },
+    "Font Awesome fa-street-view\r": {
+        "prefix": "fa-fa-street-view\r",
+        "body": "fa-street-view\r",
+        "description": "Font Awesome fa-street-view\r",
+        "scope": ""
+    },
+    "Font Awesome fa-strikethrough\r": {
+        "prefix": "fa-fa-strikethrough\r",
+        "body": "fa-strikethrough\r",
+        "description": "Font Awesome fa-strikethrough\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stumbleupon\r": {
+        "prefix": "fa-fa-stumbleupon\r",
+        "body": "fa-stumbleupon\r",
+        "description": "Font Awesome fa-stumbleupon\r",
+        "scope": ""
+    },
+    "Font Awesome fa-stumbleupon-circle\r": {
+        "prefix": "fa-fa-stumbleupon-circle\r",
+        "body": "fa-stumbleupon-circle\r",
+        "description": "Font Awesome fa-stumbleupon-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-subscript\r": {
+        "prefix": "fa-fa-subscript\r",
+        "body": "fa-subscript\r",
+        "description": "Font Awesome fa-subscript\r",
+        "scope": ""
+    },
+    "Font Awesome fa-subway\r": {
+        "prefix": "fa-fa-subway\r",
+        "body": "fa-subway\r",
+        "description": "Font Awesome fa-subway\r",
+        "scope": ""
+    },
+    "Font Awesome fa-suitcase\r": {
+        "prefix": "fa-fa-suitcase\r",
+        "body": "fa-suitcase\r",
+        "description": "Font Awesome fa-suitcase\r",
+        "scope": ""
+    },
+    "Font Awesome fa-sun-o\r": {
+        "prefix": "fa-fa-sun-o\r",
+        "body": "fa-sun-o\r",
+        "description": "Font Awesome fa-sun-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-superscript\r": {
+        "prefix": "fa-fa-superscript\r",
+        "body": "fa-superscript\r",
+        "description": "Font Awesome fa-superscript\r",
+        "scope": ""
+    },
+    "Font Awesome fa-table\r": {
+        "prefix": "fa-fa-table\r",
+        "body": "fa-table\r",
+        "description": "Font Awesome fa-table\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tablet\r": {
+        "prefix": "fa-fa-tablet\r",
+        "body": "fa-tablet\r",
+        "description": "Font Awesome fa-tablet\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tachometer\r": {
+        "prefix": "fa-fa-tachometer\r",
+        "body": "fa-tachometer\r",
+        "description": "Font Awesome fa-tachometer\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tag\r": {
+        "prefix": "fa-fa-tag\r",
+        "body": "fa-tag\r",
+        "description": "Font Awesome fa-tag\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tags\r": {
+        "prefix": "fa-fa-tags\r",
+        "body": "fa-tags\r",
+        "description": "Font Awesome fa-tags\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tasks\r": {
+        "prefix": "fa-fa-tasks\r",
+        "body": "fa-tasks\r",
+        "description": "Font Awesome fa-tasks\r",
+        "scope": ""
+    },
+    "Font Awesome fa-taxi\r": {
+        "prefix": "fa-fa-taxi\r",
+        "body": "fa-taxi\r",
+        "description": "Font Awesome fa-taxi\r",
+        "scope": ""
+    },
+    "Font Awesome fa-television\r": {
+        "prefix": "fa-fa-television\r",
+        "body": "fa-television\r",
+        "description": "Font Awesome fa-television\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tencent-weibo\r": {
+        "prefix": "fa-fa-tencent-weibo\r",
+        "body": "fa-tencent-weibo\r",
+        "description": "Font Awesome fa-tencent-weibo\r",
+        "scope": ""
+    },
+    "Font Awesome fa-terminal\r": {
+        "prefix": "fa-fa-terminal\r",
+        "body": "fa-terminal\r",
+        "description": "Font Awesome fa-terminal\r",
+        "scope": ""
+    },
+    "Font Awesome fa-text-height\r": {
+        "prefix": "fa-fa-text-height\r",
+        "body": "fa-text-height\r",
+        "description": "Font Awesome fa-text-height\r",
+        "scope": ""
+    },
+    "Font Awesome fa-text-width\r": {
+        "prefix": "fa-fa-text-width\r",
+        "body": "fa-text-width\r",
+        "description": "Font Awesome fa-text-width\r",
+        "scope": ""
+    },
+    "Font Awesome fa-th\r": {
+        "prefix": "fa-fa-th\r",
+        "body": "fa-th\r",
+        "description": "Font Awesome fa-th\r",
+        "scope": ""
+    },
+    "Font Awesome fa-th-large\r": {
+        "prefix": "fa-fa-th-large\r",
+        "body": "fa-th-large\r",
+        "description": "Font Awesome fa-th-large\r",
+        "scope": ""
+    },
+    "Font Awesome fa-th-list\r": {
+        "prefix": "fa-fa-th-list\r",
+        "body": "fa-th-list\r",
+        "description": "Font Awesome fa-th-list\r",
+        "scope": ""
+    },
+    "Font Awesome fa-thumb-tack\r": {
+        "prefix": "fa-fa-thumb-tack\r",
+        "body": "fa-thumb-tack\r",
+        "description": "Font Awesome fa-thumb-tack\r",
+        "scope": ""
+    },
+    "Font Awesome fa-thumbs-down\r": {
+        "prefix": "fa-fa-thumbs-down\r",
+        "body": "fa-thumbs-down\r",
+        "description": "Font Awesome fa-thumbs-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-thumbs-o-down\r": {
+        "prefix": "fa-fa-thumbs-o-down\r",
+        "body": "fa-thumbs-o-down\r",
+        "description": "Font Awesome fa-thumbs-o-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-thumbs-o-up\r": {
+        "prefix": "fa-fa-thumbs-o-up\r",
+        "body": "fa-thumbs-o-up\r",
+        "description": "Font Awesome fa-thumbs-o-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-thumbs-up\r": {
+        "prefix": "fa-fa-thumbs-up\r",
+        "body": "fa-thumbs-up\r",
+        "description": "Font Awesome fa-thumbs-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-ticket\r": {
+        "prefix": "fa-fa-ticket\r",
+        "body": "fa-ticket\r",
+        "description": "Font Awesome fa-ticket\r",
+        "scope": ""
+    },
+    "Font Awesome fa-times\r": {
+        "prefix": "fa-fa-times\r",
+        "body": "fa-times\r",
+        "description": "Font Awesome fa-times\r",
+        "scope": ""
+    },
+    "Font Awesome fa-times-circle\r": {
+        "prefix": "fa-fa-times-circle\r",
+        "body": "fa-times-circle\r",
+        "description": "Font Awesome fa-times-circle\r",
+        "scope": ""
+    },
+    "Font Awesome fa-times-circle-o\r": {
+        "prefix": "fa-fa-times-circle-o\r",
+        "body": "fa-times-circle-o\r",
+        "description": "Font Awesome fa-times-circle-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tint\r": {
+        "prefix": "fa-fa-tint\r",
+        "body": "fa-tint\r",
+        "description": "Font Awesome fa-tint\r",
+        "scope": ""
+    },
+    "Font Awesome fa-toggle-off\r": {
+        "prefix": "fa-fa-toggle-off\r",
+        "body": "fa-toggle-off\r",
+        "description": "Font Awesome fa-toggle-off\r",
+        "scope": ""
+    },
+    "Font Awesome fa-toggle-on\r": {
+        "prefix": "fa-fa-toggle-on\r",
+        "body": "fa-toggle-on\r",
+        "description": "Font Awesome fa-toggle-on\r",
+        "scope": ""
+    },
+    "Font Awesome fa-trademark\r": {
+        "prefix": "fa-fa-trademark\r",
+        "body": "fa-trademark\r",
+        "description": "Font Awesome fa-trademark\r",
+        "scope": ""
+    },
+    "Font Awesome fa-train\r": {
+        "prefix": "fa-fa-train\r",
+        "body": "fa-train\r",
+        "description": "Font Awesome fa-train\r",
+        "scope": ""
+    },
+    "Font Awesome fa-transgender\r": {
+        "prefix": "fa-fa-transgender\r",
+        "body": "fa-transgender\r",
+        "description": "Font Awesome fa-transgender\r",
+        "scope": ""
+    },
+    "Font Awesome fa-transgender-alt\r": {
+        "prefix": "fa-fa-transgender-alt\r",
+        "body": "fa-transgender-alt\r",
+        "description": "Font Awesome fa-transgender-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-trash\r": {
+        "prefix": "fa-fa-trash\r",
+        "body": "fa-trash\r",
+        "description": "Font Awesome fa-trash\r",
+        "scope": ""
+    },
+    "Font Awesome fa-trash-o\r": {
+        "prefix": "fa-fa-trash-o\r",
+        "body": "fa-trash-o\r",
+        "description": "Font Awesome fa-trash-o\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tree\r": {
+        "prefix": "fa-fa-tree\r",
+        "body": "fa-tree\r",
+        "description": "Font Awesome fa-tree\r",
+        "scope": ""
+    },
+    "Font Awesome fa-trello\r": {
+        "prefix": "fa-fa-trello\r",
+        "body": "fa-trello\r",
+        "description": "Font Awesome fa-trello\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tripadvisor\r": {
+        "prefix": "fa-fa-tripadvisor\r",
+        "body": "fa-tripadvisor\r",
+        "description": "Font Awesome fa-tripadvisor\r",
+        "scope": ""
+    },
+    "Font Awesome fa-trophy\r": {
+        "prefix": "fa-fa-trophy\r",
+        "body": "fa-trophy\r",
+        "description": "Font Awesome fa-trophy\r",
+        "scope": ""
+    },
+    "Font Awesome fa-truck\r": {
+        "prefix": "fa-fa-truck\r",
+        "body": "fa-truck\r",
+        "description": "Font Awesome fa-truck\r",
+        "scope": ""
+    },
+    "Font Awesome fa-try\r": {
+        "prefix": "fa-fa-try\r",
+        "body": "fa-try\r",
+        "description": "Font Awesome fa-try\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tty\r": {
+        "prefix": "fa-fa-tty\r",
+        "body": "fa-tty\r",
+        "description": "Font Awesome fa-tty\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tumblr\r": {
+        "prefix": "fa-fa-tumblr\r",
+        "body": "fa-tumblr\r",
+        "description": "Font Awesome fa-tumblr\r",
+        "scope": ""
+    },
+    "Font Awesome fa-tumblr-square\r": {
+        "prefix": "fa-fa-tumblr-square\r",
+        "body": "fa-tumblr-square\r",
+        "description": "Font Awesome fa-tumblr-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-twitch\r": {
+        "prefix": "fa-fa-twitch\r",
+        "body": "fa-twitch\r",
+        "description": "Font Awesome fa-twitch\r",
+        "scope": ""
+    },
+    "Font Awesome fa-twitter\r": {
+        "prefix": "fa-fa-twitter\r",
+        "body": "fa-twitter\r",
+        "description": "Font Awesome fa-twitter\r",
+        "scope": ""
+    },
+    "Font Awesome fa-twitter-square\r": {
+        "prefix": "fa-fa-twitter-square\r",
+        "body": "fa-twitter-square\r",
+        "description": "Font Awesome fa-twitter-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-umbrella\r": {
+        "prefix": "fa-fa-umbrella\r",
+        "body": "fa-umbrella\r",
+        "description": "Font Awesome fa-umbrella\r",
+        "scope": ""
+    },
+    "Font Awesome fa-underline\r": {
+        "prefix": "fa-fa-underline\r",
+        "body": "fa-underline\r",
+        "description": "Font Awesome fa-underline\r",
+        "scope": ""
+    },
+    "Font Awesome fa-undo\r": {
+        "prefix": "fa-fa-undo\r",
+        "body": "fa-undo\r",
+        "description": "Font Awesome fa-undo\r",
+        "scope": ""
+    },
+    "Font Awesome fa-university\r": {
+        "prefix": "fa-fa-university\r",
+        "body": "fa-university\r",
+        "description": "Font Awesome fa-university\r",
+        "scope": ""
+    },
+    "Font Awesome fa-unlock\r": {
+        "prefix": "fa-fa-unlock\r",
+        "body": "fa-unlock\r",
+        "description": "Font Awesome fa-unlock\r",
+        "scope": ""
+    },
+    "Font Awesome fa-unlock-alt\r": {
+        "prefix": "fa-fa-unlock-alt\r",
+        "body": "fa-unlock-alt\r",
+        "description": "Font Awesome fa-unlock-alt\r",
+        "scope": ""
+    },
+    "Font Awesome fa-upload\r": {
+        "prefix": "fa-fa-upload\r",
+        "body": "fa-upload\r",
+        "description": "Font Awesome fa-upload\r",
+        "scope": ""
+    },
+    "Font Awesome fa-usd\r": {
+        "prefix": "fa-fa-usd\r",
+        "body": "fa-usd\r",
+        "description": "Font Awesome fa-usd\r",
+        "scope": ""
+    },
+    "Font Awesome fa-user\r": {
+        "prefix": "fa-fa-user\r",
+        "body": "fa-user\r",
+        "description": "Font Awesome fa-user\r",
+        "scope": ""
+    },
+    "Font Awesome fa-user-md\r": {
+        "prefix": "fa-fa-user-md\r",
+        "body": "fa-user-md\r",
+        "description": "Font Awesome fa-user-md\r",
+        "scope": ""
+    },
+    "Font Awesome fa-user-plus\r": {
+        "prefix": "fa-fa-user-plus\r",
+        "body": "fa-user-plus\r",
+        "description": "Font Awesome fa-user-plus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-user-secret\r": {
+        "prefix": "fa-fa-user-secret\r",
+        "body": "fa-user-secret\r",
+        "description": "Font Awesome fa-user-secret\r",
+        "scope": ""
+    },
+    "Font Awesome fa-user-times\r": {
+        "prefix": "fa-fa-user-times\r",
+        "body": "fa-user-times\r",
+        "description": "Font Awesome fa-user-times\r",
+        "scope": ""
+    },
+    "Font Awesome fa-users\r": {
+        "prefix": "fa-fa-users\r",
+        "body": "fa-users\r",
+        "description": "Font Awesome fa-users\r",
+        "scope": ""
+    },
+    "Font Awesome fa-venus\r": {
+        "prefix": "fa-fa-venus\r",
+        "body": "fa-venus\r",
+        "description": "Font Awesome fa-venus\r",
+        "scope": ""
+    },
+    "Font Awesome fa-venus-double\r": {
+        "prefix": "fa-fa-venus-double\r",
+        "body": "fa-venus-double\r",
+        "description": "Font Awesome fa-venus-double\r",
+        "scope": ""
+    },
+    "Font Awesome fa-venus-mars\r": {
+        "prefix": "fa-fa-venus-mars\r",
+        "body": "fa-venus-mars\r",
+        "description": "Font Awesome fa-venus-mars\r",
+        "scope": ""
+    },
+    "Font Awesome fa-viacoin\r": {
+        "prefix": "fa-fa-viacoin\r",
+        "body": "fa-viacoin\r",
+        "description": "Font Awesome fa-viacoin\r",
+        "scope": ""
+    },
+    "Font Awesome fa-video-camera\r": {
+        "prefix": "fa-fa-video-camera\r",
+        "body": "fa-video-camera\r",
+        "description": "Font Awesome fa-video-camera\r",
+        "scope": ""
+    },
+    "Font Awesome fa-vimeo\r": {
+        "prefix": "fa-fa-vimeo\r",
+        "body": "fa-vimeo\r",
+        "description": "Font Awesome fa-vimeo\r",
+        "scope": ""
+    },
+    "Font Awesome fa-vimeo-square\r": {
+        "prefix": "fa-fa-vimeo-square\r",
+        "body": "fa-vimeo-square\r",
+        "description": "Font Awesome fa-vimeo-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-vine\r": {
+        "prefix": "fa-fa-vine\r",
+        "body": "fa-vine\r",
+        "description": "Font Awesome fa-vine\r",
+        "scope": ""
+    },
+    "Font Awesome fa-vk\r": {
+        "prefix": "fa-fa-vk\r",
+        "body": "fa-vk\r",
+        "description": "Font Awesome fa-vk\r",
+        "scope": ""
+    },
+    "Font Awesome fa-volume-down\r": {
+        "prefix": "fa-fa-volume-down\r",
+        "body": "fa-volume-down\r",
+        "description": "Font Awesome fa-volume-down\r",
+        "scope": ""
+    },
+    "Font Awesome fa-volume-off\r": {
+        "prefix": "fa-fa-volume-off\r",
+        "body": "fa-volume-off\r",
+        "description": "Font Awesome fa-volume-off\r",
+        "scope": ""
+    },
+    "Font Awesome fa-volume-up\r": {
+        "prefix": "fa-fa-volume-up\r",
+        "body": "fa-volume-up\r",
+        "description": "Font Awesome fa-volume-up\r",
+        "scope": ""
+    },
+    "Font Awesome fa-weibo\r": {
+        "prefix": "fa-fa-weibo\r",
+        "body": "fa-weibo\r",
+        "description": "Font Awesome fa-weibo\r",
+        "scope": ""
+    },
+    "Font Awesome fa-weixin\r": {
+        "prefix": "fa-fa-weixin\r",
+        "body": "fa-weixin\r",
+        "description": "Font Awesome fa-weixin\r",
+        "scope": ""
+    },
+    "Font Awesome fa-whatsapp\r": {
+        "prefix": "fa-fa-whatsapp\r",
+        "body": "fa-whatsapp\r",
+        "description": "Font Awesome fa-whatsapp\r",
+        "scope": ""
+    },
+    "Font Awesome fa-wheelchair\r": {
+        "prefix": "fa-fa-wheelchair\r",
+        "body": "fa-wheelchair\r",
+        "description": "Font Awesome fa-wheelchair\r",
+        "scope": ""
+    },
+    "Font Awesome fa-wifi\r": {
+        "prefix": "fa-fa-wifi\r",
+        "body": "fa-wifi\r",
+        "description": "Font Awesome fa-wifi\r",
+        "scope": ""
+    },
+    "Font Awesome fa-wikipedia-w\r": {
+        "prefix": "fa-fa-wikipedia-w\r",
+        "body": "fa-wikipedia-w\r",
+        "description": "Font Awesome fa-wikipedia-w\r",
+        "scope": ""
+    },
+    "Font Awesome fa-windows\r": {
+        "prefix": "fa-fa-windows\r",
+        "body": "fa-windows\r",
+        "description": "Font Awesome fa-windows\r",
+        "scope": ""
+    },
+    "Font Awesome fa-wordpress\r": {
+        "prefix": "fa-fa-wordpress\r",
+        "body": "fa-wordpress\r",
+        "description": "Font Awesome fa-wordpress\r",
+        "scope": ""
+    },
+    "Font Awesome fa-wrench\r": {
+        "prefix": "fa-fa-wrench\r",
+        "body": "fa-wrench\r",
+        "description": "Font Awesome fa-wrench\r",
+        "scope": ""
+    },
+    "Font Awesome fa-xing\r": {
+        "prefix": "fa-fa-xing\r",
+        "body": "fa-xing\r",
+        "description": "Font Awesome fa-xing\r",
+        "scope": ""
+    },
+    "Font Awesome fa-xing-square\r": {
+        "prefix": "fa-fa-xing-square\r",
+        "body": "fa-xing-square\r",
+        "description": "Font Awesome fa-xing-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-y-combinator\r": {
+        "prefix": "fa-fa-y-combinator\r",
+        "body": "fa-y-combinator\r",
+        "description": "Font Awesome fa-y-combinator\r",
+        "scope": ""
+    },
+    "Font Awesome fa-yahoo\r": {
+        "prefix": "fa-fa-yahoo\r",
+        "body": "fa-yahoo\r",
+        "description": "Font Awesome fa-yahoo\r",
+        "scope": ""
+    },
+    "Font Awesome fa-yelp\r": {
+        "prefix": "fa-fa-yelp\r",
+        "body": "fa-yelp\r",
+        "description": "Font Awesome fa-yelp\r",
+        "scope": ""
+    },
+    "Font Awesome fa-youtube\r": {
+        "prefix": "fa-fa-youtube\r",
+        "body": "fa-youtube\r",
+        "description": "Font Awesome fa-youtube\r",
+        "scope": ""
+    },
+    "Font Awesome fa-youtube-play\r": {
+        "prefix": "fa-fa-youtube-play\r",
+        "body": "fa-youtube-play\r",
+        "description": "Font Awesome fa-youtube-play\r",
+        "scope": ""
+    },
+    "Font Awesome fa-youtube-square\r": {
+        "prefix": "fa-fa-youtube-square\r",
+        "body": "fa-youtube-square\r",
+        "description": "Font Awesome fa-youtube-square\r",
+        "scope": ""
+    },
+    "Font Awesome fa-glass": {
+        "prefix": "fa-fa-glass",
+        "body": "fa-glass",
+        "description": "Font Awesome fa-glass",
+        "scope": ""
+    }
+}
