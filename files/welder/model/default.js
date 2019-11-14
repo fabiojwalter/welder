@@ -1,35 +1,15 @@
+import * as messages from 'i18n';
+
 export default (sequelize, DataTypes) => {
-  const Issue = sequelize.define(
-    'Issue',
+  const ${model} = sequelize.define(
+    '${model}',
     {
-      content: {
-        type: DataTypes.STRING(800),
-        allowNull: false,
-        validate: {
-          notEmpty: {
-            msg: 'Content não pode ser nulo'
-          }
-        }
-      },
-      issueStatus: {
+      ${field}: {
         type: DataTypes.STRING(60),
         allowNull: false,
         validate: {
           notEmpty: {
-            msg: 'IsssueStatus não pode ser nulo'
-          },
-          isIn: {
-            args: [['OPEN', 'IN PROGRESS', 'WAITING', 'DONE']],
-            msg: 'Opção invalida! Validos = OPEN, IN PROGRESS, WAITING, DONE'
-          }
-        }
-      },
-      closedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        validate: {
-          notNull: {
-            msg: 'A data de fechamento não pode ser nula'
+            msg: messages.__('validation.field.cannotBeNull', '${field}')
           }
         }
       },
@@ -40,15 +20,12 @@ export default (sequelize, DataTypes) => {
       }
     },
     {
-      tableName: 'issues',
+      tableName: '${model}s',
       underscored: true,
       schema: process.env.DATABASE_SCHEMA || 'public'
     }
   );
 
-  Issue.associate = (models) => {
-    Issue.belongsTo(models.Project);
-  };
 
-  return Issue;
+  return ${model};
 };

@@ -20,7 +20,7 @@ module.exports.run = async function () {
     let value = ''
     //Generating string for table replace
     for (const i in snippetContent) {
-        if (i) value += i + ' | `' + snippetContent[i].prefix + '`\n';
+        if (i) value += `${i} | ${snippetContent[i].prefix}\r`;
     }
 
     fileContent = fileContent.replace('@@DOCUMENTATION@@', value);

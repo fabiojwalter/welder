@@ -1,6 +1,6 @@
-CREATE TABLE ${1:tableName} (
+CREATE TABLE ${table} (
     id BIGSERIAL PRIMARY KEY,
-    ${2:varcharField} CHARACTER VARYING(60) NOT NULL,
+    ${field} CHARACTER VARYING(60) NOT NULL,
     active BOOLEAN DEFAULT true NOT NULL,
     created_at TIMESTAMPTZ NOT NULL,
     updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
