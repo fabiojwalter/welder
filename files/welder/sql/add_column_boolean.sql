@@ -1,0 +1,1 @@
+$column BOOLEAN DEFAULT true NOT NULL,

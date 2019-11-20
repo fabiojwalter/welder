@@ -1,0 +1,1 @@
+${field} CHARACTER VARYING(60) NOT NULL,
