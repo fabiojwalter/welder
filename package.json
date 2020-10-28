@@ -1,9 +1,9 @@
 {
   "name": "Welder",
-  "displayName": "Welder - Snippets",
-  "description": "MaxxiData projects snippets",
+  "displayName": "Welder Extension Pack",
+  "description": "MaxxiData projects Snippets and Extensions",
   "icon": "images/icon.png",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "publisher": "fabiowalter-maxxidata",
   "license": "See License section in README.md.",
   "homepage": "https://github.com/fabiojwalter/welder",
@@ -26,7 +26,8 @@
     "theme": "light"
   },
   "categories": [
-    "Snippets", "Extension Packs"
+    "Snippets",
+    "Extension Packs"
   ],
   "scripts": {
     "start": "node source/index.js"
@@ -89,6 +90,10 @@
     "bang.antd-snippets",
     "arjun.swagger-viewer",
     "alanwalk.markdown-toc",
-    "42crunch.vscode-openapi"
+    "42crunch.vscode-openapi",
+    "maty.vscode-mocha-sidebar",
+    "randomfractalsinc.vscode-data-preview",
+    "bateleurio.vscode-combine-scripts",
+    "vscode-icons-team.vscode-icons"
   ]
 }
